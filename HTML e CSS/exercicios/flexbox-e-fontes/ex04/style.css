@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.apresentacao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10%;
+}
+
+.apresentacao__conteudo {
+  width: 615px;
+}
+
+.apresentacao__conteudo__titulo {
+  font-size: 36px;
+}
+
+.apresentacao__conteudo__texto {
+  font-size: 24px;
+}

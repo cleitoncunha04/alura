@@ -1,0 +1,14 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: aliceblue;
+  box-sizing: border-box;
+}
+
+.filho {
+  background-color: aqua;
+  border: 5px solid black;
+}
