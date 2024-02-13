@@ -11,6 +11,7 @@
   --cinza-secundario: #c0c0c0;
   --botao-azul: #167bf7;
   --cor-fundo: #00030c;
+  --botao-azul-efeito: #3c92fa;
   --fonte-primaria: "Inter", sans-serif;
 }
 
@@ -56,6 +57,11 @@ body {
   text-decoration: none;
 }
 
+.container__botao:hover {
+  background-color: var(--botao-azul-efeito);
+  color: var(--cor-fundo);
+}
+
 .botao_secundario {
   background-color: transparent;
   border: 2px solid var(--branco-primario);
@@ -92,4 +98,56 @@ body {
 .secundario__botao {
   display: inline-block;
   margin-top: 1em;
+}
+
+.dispositivos {
+  text-align: center;
+}
+
+.dispositivos__titulo {
+  font-size: 3rem;
+  color: var(--branco-primario);
+}
+
+.dispositivos__lista {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  margin: 5em 0;
+  font-size: 2rem;
+  color: var(--branco-primario);
+}
+
+.rodape {
+  text-align: center;
+  margin: 5em 3em;
+}
+
+.rodape__lista {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.rodape__lista__item {
+  margin: 1em;
+}
+
+.rodape__lista__item__link {
+  color: var(--branco-primario);
+  text-decoration: none;
+}
+
+.rodape__lista__item__link:hover {
+  color: var(--botao-azul);
+}
+
+.rodape__lista__item__link:active {
+  color: var(--cinza-secundario);
+}
+
+.rodape__texto {
+  font-size: 0.875rem;
+  color: var(--cinza-secundario);
+  margin: 1.5rem 0;
 }
