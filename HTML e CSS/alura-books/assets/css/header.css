@@ -8,8 +8,8 @@
 
 .cabecalho__menu-hamburguer {
   display: inline-block;
-  width: 48px;
-  height: 48px;
+  width: 32px;
+  height: 32px;
   background-image: url("../images/Menu.svg");
 }
 
@@ -21,6 +21,7 @@
   padding: 1em;
   background-repeat: no-repeat;
   background-position: center;
+  width: 32px;
 }
 
 .lista-menu {
@@ -40,7 +41,7 @@
 
 .lista-menu__titulo,
 .lista-menu__item {
-  padding: 1em;
+  padding: 0.6em;
   background-color: var(--branco);
 }
 

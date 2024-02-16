@@ -6,7 +6,7 @@
 }
 
 .banner__titulo {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 700;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .banner__pesquisa {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--branco);
   background-color: transparent;
   border: 1px solid var(--branco);
@@ -27,7 +27,7 @@
 
 .banner__pesquisa::placeholder {
   font-family: var(--fonte-principal);
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--branco);
   text-align: center;
   background: url("../images/Pesquisa.svg") no-repeat;
