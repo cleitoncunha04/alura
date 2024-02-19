@@ -39,6 +39,14 @@
   display: none;
 }
 
+.container__botao:checked ~ .container__rotulo {
+  background: var(--azul-degrade);
+}
+
+.container__botao:checked ~ .container__rotulo > .cabecalho__menu-hamburguer {
+  background-image: url(../images/menu_black_24dp\ 1.svg);
+}
+
 .container__botao:checked ~ .lista-menu {
   display: block;
 }
@@ -105,8 +113,18 @@
     display: none;
   }
 
+  .opcoes__botao:checked ~ .opcoes__rotulo > .opcoes__item {
+    background: var(--azul-degrade);
+    color: var(--branco);
+  }
+
+  .opcoes__botao:checked ~ .lista-menu {
+    display: block;
+    width: auto;
+  }
+
   .opcoes__item {
-    padding: 0 1em;
+    padding: 1.5em 2em;
     text-transform: uppercase;
   }
 
@@ -115,9 +133,14 @@
     color: var(--preto);
   }
 
-  .opcoes__botao:checked ~ .lista-menu {
-    display: block;
-    width: auto;
+  .lista-menu__item:hover {
+    background: var(--azul-degrade);
+    /* color:var(--branco); */
+  }
+
+  .lista-menu__item:hover > .lista-menu__item__link {
+    -webkit-text-fill-color: var(--branco);
+    text-decoration: none;
   }
 }
 
@@ -125,11 +148,11 @@
   .cabecalho {
     padding: 0 2em;
   }
-  
+
   .opcoes {
     margin-right: auto;
   }
-  
+
   .container__link {
     display: flex;
     align-items: center;
@@ -142,6 +165,4 @@
   .container__texto {
     display: block;
   }
-
-
 }

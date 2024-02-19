@@ -93,6 +93,8 @@
   .swiper-button-next {
     display: block;
     top: 60%;
+    /* height: 30%; */
+    color: var(--azul);
   }
 
   .card {
