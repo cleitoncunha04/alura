@@ -27,3 +27,9 @@
   text-decoration: none;
   padding: 1em;
 }
+
+@media screen and (min-width: 1024px) {
+  .topicos__titulos, .topicos__lista__item__link {
+    font-size: 1.5rem;
+  }
+}
