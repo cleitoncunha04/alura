@@ -18,7 +18,7 @@
 
 .topicos__lista__item {
   margin: 2em 0.5em;
-} 
+}
 
 .topicos__lista__item__link {
   background-color: var(--laranja);
@@ -29,7 +29,18 @@
 }
 
 @media screen and (min-width: 1024px) {
-  .topicos__titulos, .topicos__lista__item__link {
+  .topicos__titulos,
+  .topicos__lista__item__link {
     font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1728px) {
+  .topicos {
+    padding: 3em 25vw;
+  }
+
+  .topicos__titulos {
+    font-size: 2rem;
   }
 }

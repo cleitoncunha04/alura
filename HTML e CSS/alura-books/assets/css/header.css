@@ -24,6 +24,10 @@
   width: 32px;
 }
 
+.container__texto {
+  display: none;
+}
+
 .lista-menu {
   display: none;
   position: absolute;
@@ -115,4 +119,29 @@
     display: block;
     width: auto;
   }
+}
+
+@media screen and (min-width: 1728px) {
+  .cabecalho {
+    padding: 0 2em;
+  }
+  
+  .opcoes {
+    margin-right: auto;
+  }
+  
+  .container__link {
+    display: flex;
+    align-items: center;
+    /* padding: 1em; */
+    text-decoration: none;
+    color: var(--preto);
+    font-size: 1.25rem;
+  }
+
+  .container__texto {
+    display: block;
+  }
+
+
 }

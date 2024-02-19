@@ -89,7 +89,8 @@
     margin: 2em 0 3em 0;
   }
 
-  .swiper-button-prev, .swiper-button-next {
+  .swiper-button-prev,
+  .swiper-button-next {
     display: block;
     top: 60%;
   }
@@ -97,5 +98,43 @@
   .card {
     width: 40%;
     margin: 2em auto;
+  }
+}
+
+@media screen and (min-width: 1728px) {
+  .carrossel__container {
+    display: flex;
+    align-items: center;
+    gap: 3em;
+    margin: 0 20vw 3em 20vw;
+  }
+
+  .swiper {
+    width: 50%;
+  }
+
+  .swiper-pagination {
+    margin: 1em 0;
+  }
+
+  .card {
+    width: 60%;
+    margin-top: 8vh;
+  }
+
+  .descricao {
+    margin-right: 1em;
+  }
+
+  .descricao__titulo {
+    font-size: 2rem;
+  }
+
+  .descricao__texto {
+    font-size: 1rem;
+  }
+
+  .botoes__link {
+    padding: 1em 2.2em;
   }
 }
