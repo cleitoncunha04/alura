@@ -17,23 +17,40 @@ const btnTimer = document.querySelector(".app__card-primary-button");
 const timers = [1500, 300, 900];
 
 btnFocus.addEventListener("click", () => {
-  html.setAttribute("data-contexto", "foco");
-
-  imageBanner.setAttribute("src", "./imagens/foco.png");
+  changeContext("foco");
 });
 
 btnShortRest.addEventListener("click", () => {
-  html.setAttribute("data-contexto", "descanso-curto");
-
-  imageBanner.setAttribute("src", "./imagens/descanso-curto.png");
-
+  changeContext("descanso-curto");
 });
 
 btnLongRest.addEventListener("click", () => {
-  html.setAttribute("data-contexto", "descanso-longo");
-
-  imageBanner.setAttribute("src", "./imagens/descanso-longo.png");
-
+  changeContext("descanso-longo");
 });
+
+function changeContext(context) {
+  html.setAttribute("data-contexto", context);
+
+  imageBanner.setAttribute("src", `./imagens/${context}.png`);
+
+  switch (context) {
+    case "foco":
+      // innerHTML é muito útil para criar listas
+      title.innerHTML = `Otimize sua produtividade,<br />
+        <strong class="app__title-strong">mergulhe no que importa.</strong>`;
+      break;
+    case "descanso-curto":
+      title.innerHTML = `Que tal dar uma respirada?<br />
+        <strong class="app__title-strong">Faça uma pausa curta!</strong>`;
+      break;
+
+    case "descanso-longo":
+      title.innerHTML = `Hora de voltar à superfície.<br />
+        <strong class="app__title-strong">Faça uma pausa longa.</strong>`;
+      break;
+    default:
+      break;
+  }
+}
 
 btnTimer.addEventListener("click", () => {});
