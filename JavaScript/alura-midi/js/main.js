@@ -6,6 +6,7 @@ function playSound(audioSelector) {
   } catch (error) {
     console.log(error);
   }
+
 }
 
 const keyList = document.querySelectorAll(".tecla");

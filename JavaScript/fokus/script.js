@@ -28,13 +28,14 @@ const btnTimer = document.querySelector("#start-pause");
 const btnTimerText = document.querySelector("#start-pause span");
 btnTimerImage = document.querySelector(".app__card-primary-butto-icon");
 
-let timeInSeconds = 1500;
+let timeInSeconds = 5;
 let intervalId = null;
 
 tglSongFocusInput.addEventListener("change", () => {
   if (song.paused) {
     song.play();
-  } else {
+  } 
+  else {
     song.pause();
   }
 });
@@ -84,12 +85,12 @@ function changeContext(context) {
         <strong class="app__title-strong">mergulhe no que importa.</strong>`;
       break;
     case "descanso-curto":
-      title.innerHTML = `Que tal dar uma respirada?<br />
+      title.innerHTML = `Que tal dar uma respirada?
         <strong class="app__title-strong">Faça uma pausa curta!</strong>`;
       break;
 
     case "descanso-longo":
-      title.innerHTML = `Hora de voltar à superfície.<br />
+      title.innerHTML = `Hora de voltar à superfície.
         <strong class="app__title-strong">Faça uma pausa longa.</strong>`;
       break;
     default:
@@ -104,11 +105,19 @@ const countdown = () => {
     printTimeOnScreen();
   } else {
     finishAudio.play();
+    
+    const focoAtivo = html.getAttribute('data-contexto') === 'foco';
+
+    if(focoAtivo){
+      const evento = new CustomEvent('FocoFinalizado');
+      document.dispatchEvent(evento);
+    }
+
     reset();
   }
 };
 
-function start() {
+function startOrPause() {
   if (intervalId) {
     pauseAudio.play();
 
@@ -133,7 +142,7 @@ function reset() {
   btnTimerImage.setAttribute("src", "./imagens/play_arrow.png");
 }
 
-btnTimer.addEventListener("click", start);
+btnTimer.addEventListener("click", startOrPause);
 
 function printTimeOnScreen() {
   const time = new Date(timeInSeconds * 1000);
