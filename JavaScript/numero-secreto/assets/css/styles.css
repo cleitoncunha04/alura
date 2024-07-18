@@ -29,7 +29,7 @@ h2 {
   margin-top: 20px;
 }
 
-h2 #menor-valor, h2 #maior-valor {
+h2 #menor-valor, h2 #maior-valor, strong {
   font-weight: 500;
 }
 
@@ -45,4 +45,23 @@ h2 #menor-valor, h2 #maior-valor {
   margin: 20px;
   border-radius: 20px 10px;
   border: 3px solid var(--primary-color);
+}
+
+.mensagem span {
+  display: block;
+}
+
+.btn {
+  margin-top: 20px;
+  border: 0;
+  padding: 8px 15px;
+  border-radius: 10px;
+  background: var(--primary-color);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.301);
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+.btn:hover {
+  transform: scale(1.1);
 }

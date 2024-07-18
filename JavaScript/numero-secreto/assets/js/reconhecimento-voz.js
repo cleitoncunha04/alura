@@ -9,16 +9,17 @@ recognition.lang = "pt-Br";
 recognition.start();
 
 function exibeNaTela(chute) {
-  elementoChute.innerHTML = 
-  `
+  elementoChute.innerHTML = `
   <div> Você disse:</div>
   <span class="box">${chute}</span>
-  <div>O número sorteado é</div>
   `;
 }
 
 recognition.addEventListener("result", (e) => {
   let chute = e.results[0][0].transcript;
   exibeNaTela(chute);
+  //remove os pontos
+  isNumber(chute.replace(/\./g, ""));
 });
 
+recognition.addEventListener('end', () => recognition.start());
