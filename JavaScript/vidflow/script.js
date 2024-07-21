@@ -1,10 +1,7 @@
 const containerVideos = document.querySelector(".videos__container");
 
-// fetch() -> faz a busca, que retorna uma promise
-// .then() -> função assincrona q tem resposta como um agente causador
-const api = fetch("http://localhost:3000/videos")
-  .then((resposta) => resposta.json()) // apos a resposta do fetch, o arquivo é convertido em json 
-  .then((videos) => videos.forEach((video) => {
+async function mostrarVideos(videos) {
+  videos.forEach((video) => {
     containerVideos.innerHTML += `
       <li class="videos__item"> 
         <iframe src="${video.url}" title="${video.titulo}" frameborder="0" allowfullscreen></iframe>
@@ -15,7 +12,24 @@ const api = fetch("http://localhost:3000/videos")
         </div>
       </li>
     `;
-  })).catch((erro) => {
-    containerVideos.innerHTML = `
-    <p>Erro ao carregar o vídeo: ${erro}</p>`;
   });
+}
+
+async function buscarVideos() {
+  try {
+    // fetch() -> faz a busca, que retorna uma promise
+    // .then() -> função assincrona q tem resposta como um agente causador
+    const busca = await fetch("http://localhost:3000/videos");
+
+    const videos = await busca.json();
+
+    mostrarVideos(videos);
+  } catch (error) {
+    containerVideos.innerHTML = `
+    <p>Erro ao carregar os vídeos: ${error}</p>`;
+  } /*finally {
+    sempre vai acontecer
+  }*/
+}
+
+buscarVideos();
