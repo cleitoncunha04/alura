@@ -5,9 +5,12 @@ elementosBotoes.forEach((botao) => {
 });
 
 function filtrarLivros(categoria) {
-  if(categoria) {
-    let livrosFiltrados = livros.filter((livro) => livro.categoria == categoria);
-  
+  if (categoria) {
+    let livrosFiltrados =
+      categoria == "disponiveis"
+        ? livros.filter((livro) => livro.quantidade > 0)
+        : livros.filter((livro) => livro.categoria == categoria);
+
     exibirLivrosTela(livrosFiltrados);
   }
 }
