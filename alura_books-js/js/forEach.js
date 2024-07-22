@@ -1,5 +1,10 @@
+const elementoInserirLivros = document.getElementById("livros");
+const elementoValorTotalLivrosDisponiveis = document.getElementById('valor_total_livros_disponiveis');
+
 function exibirLivrosTela(livros) {
   elementoInserirLivros.innerHTML = "";
+  elementoValorTotalLivrosDisponiveis.innerHTML = "";
+  
   livros.forEach((livro) => {
     elementoInserirLivros.innerHTML += `
       <div class="livro">
