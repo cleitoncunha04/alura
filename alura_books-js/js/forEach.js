@@ -1,5 +1,6 @@
 function exibirLivrosTela(livros) {
-  livros.forEach(livro => {
+  elementoInserirLivros.innerHTML = "";
+  livros.forEach((livro) => {
     elementoInserirLivros.innerHTML += `
       <div class="livro">
       <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}" />
