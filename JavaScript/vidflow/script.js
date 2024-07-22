@@ -6,9 +6,10 @@ async function mostrarVideos(videos) {
       <li class="videos__item"> 
         <iframe src="${video.url}" title="${video.titulo}" frameborder="0" allowfullscreen></iframe>
         <div class="descricao-video">
-        <img class="img-canal" src="${video.imagem}" alt="Logo do canal">
-        <h3 class="titulo-video">${video.titulo}</h3>
-        <p class="titulo-canal">${video.descricao}</p>
+          <img class="img-canal" src="${video.imagem}" alt="Logo do canal">
+          <h3 class="titulo-video">${video.titulo}</h3>
+          <p class="titulo-canal">${video.descricao}</p>
+          <p class="categoria" hidden>${video.categoria}</p>
         </div>
       </li>
     `;
@@ -33,3 +34,44 @@ async function buscarVideos() {
 }
 
 buscarVideos();
+
+const barraPesquisa = document.querySelector(".pesquisar__input");
+
+function filtrarPesquisa() {
+  const videos = document.querySelectorAll(".videos__item");
+  let valorPesquisado = barraPesquisa.value.toLowerCase();
+
+  videos.forEach((video) => {
+    let titulo = video.querySelector(".titulo-video").textContent.toLowerCase();
+
+    video.style.display = valorPesquisado
+      ? titulo.includes(valorPesquisado)
+        ? "block"
+        : "none"
+      : "block";
+  });
+}
+
+barraPesquisa.addEventListener("input", filtrarPesquisa);
+
+const botoesCategoria = document.querySelectorAll(".superior__item");
+
+function filtrarPorCategoria(filtro) {
+  const videos = document.querySelectorAll(".videos__item");
+
+  videos.forEach((video) => {
+    let categoria = video.querySelector(".categoria").textContent.toLowerCase();
+    let valorFiltro = filtro.toLowerCase();
+
+    video.style.display =
+      !categoria.includes(valorFiltro) && valorFiltro != "tudo"
+        ? "none"
+        : "block";
+  });
+}
+
+botoesCategoria.forEach((botao) => {
+  let nomeCategoria = botao.getAttribute("name");
+
+  botao.addEventListener("click", () => filtrarPorCategoria(nomeCategoria));
+});
