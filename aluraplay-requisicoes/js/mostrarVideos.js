@@ -25,11 +25,15 @@ export default function construirCard(video) {
 }
 
 async function listarVideos() {
-  const videos = await conexaoApi.getDados();
-
-  videos.forEach((video) => {
-    $ulLista.appendChild(construirCard(video));
-  });
+  try {
+    const videos = await conexaoApi.getDados();
+  
+    videos.forEach((video) => {
+      $ulLista.appendChild(construirCard(video));
+    });
+  } catch (error) {
+    $ulLista.innerHTML = `<h2 class="mensagem__titulo">Não foi possível carregar a lista de vídeos: ${error}</h2>`;
+  }
 }
 
 listarVideos();

@@ -22,9 +22,13 @@ async function criarVideo(evento) {
 
   const imagem = document.querySelector("[data-imagem]").value;
 
-  await conexaoApi.setDados(titulo, descricao, url, imagem);
-
-  window.location.href = "./envio-concluido.html";
+  try {
+    await conexaoApi.setDados(titulo, descricao, url, imagem);
+  
+    window.location.href = "./envio-concluido.html";
+  } catch (error) {
+    alert(error);
+  }
 }
 
 $formulario.addEventListener("submit", (evento) => criarVideo(evento));

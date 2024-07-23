@@ -10,15 +10,20 @@ async function buscarVideo(evento) {
 
   const $ulLista = document.querySelector("[data-lista]");
   // $ulLista.innerHTML = ""; --> possibilidade para limpar a <ul>
-  
-  //remove todos os filhos da <ul>
-  while($ulLista.firstChild) {
-    $ulLista.removeChild($ulLista.firstChild);
-  }
 
-  videosPesquisados.forEach(videoP => {
-    $ulLista.appendChild(construirCard(videoP));
-  });
+  if (videosPesquisados.length === 0) {
+    $ulLista.innerHTML = `<h2 class="mensagem__titulo">Não existem vídeos com este termo</h2>`;
+  } 
+  else {
+    //remove todos os filhos da <ul>
+    while ($ulLista.firstChild) {
+      $ulLista.removeChild($ulLista.firstChild);
+    }
+
+    videosPesquisados.forEach((videoP) => {
+      $ulLista.appendChild(construirCard(videoP));
+    });
+  }
 }
 
 const $botaoPesquisa = document.querySelector("[data-botao-pesquisa]");
