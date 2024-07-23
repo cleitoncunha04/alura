@@ -3,7 +3,7 @@ import { conexaoApi } from "./conexaoAPI.js";
 
 const $ulLista = document.querySelector("[data-lista]");
 
-function construirCard(video) {
+export default function construirCard(video) {
   const $liVideo = document.createElement("li");
   $liVideo.className = "videos__item";
 

@@ -1,6 +1,10 @@
-async function getDados() {
+const urlEndPointApi = "http://localhost:3000/videos";
+
+async function getDados(termoBusca) {
   // requisição GET --> retorna algo
-  const conexao = await fetch("http://localhost:3000/videos");
+  const conexao = termoBusca
+    ? await fetch(`${urlEndPointApi}?q=${termoBusca}`)
+    : await fetch(urlEndPointApi);
   // preciso esperar a conexao para converter para JSON
   const dados = await conexao.json();
 
@@ -8,7 +12,7 @@ async function getDados() {
 }
 
 async function setDados(titulo, descricao, url, imagem) {
-  const conexao = await fetch("http://localhost:3000/videos", {
+  const conexao = await fetch(urlEndPointApi, {
     method: "POST",
     headers: {
       //especifica o tipo de arquivo (enviado/recebido)
@@ -27,6 +31,13 @@ async function setDados(titulo, descricao, url, imagem) {
 
   return dados;
 }
+
+// async function searchDados(termoBusca) {
+//   const conexao = await fetch(`${urlEndPointApi}?q=${termoBusca}`);
+//   dados = await conexao.json();
+
+//   return dados;
+// }
 
 export const conexaoApi = {
   getDados,
