@@ -1,12 +1,13 @@
+// "conexaoApi" é apenas um alias para usar as funções do arquivo "conexaoAPI.js"
 import { conexaoApi } from "./conexaoAPI.js";
 
-const $lista = document.querySelector("[data-lista]");
+const $ulLista = document.querySelector("[data-lista]");
 
 function construirCard(video) {
-  const $video = document.createElement("li");
-  $video.className = "videos__item";
+  const $liVideo = document.createElement("li");
+  $liVideo.className = "videos__item";
 
-  $video.innerHTML = `
+  $liVideo.innerHTML = `
     <iframe width="100%" height="72%" src="${video.url}"
       title="${video.titulo}" frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -20,14 +21,14 @@ function construirCard(video) {
     </div>
   `;
 
-  return $video;
+  return $liVideo;
 }
 
 async function listarVideos() {
   const videos = await conexaoApi.getDados();
 
   videos.forEach((video) => {
-    $lista.appendChild(construirCard(video));
+    $ulLista.appendChild(construirCard(video));
   });
 }
 
