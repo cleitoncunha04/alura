@@ -4,8 +4,9 @@ class Filme
 {
     private string $nome;
     private int $anoLancamento;
-    private float $nota;
     private string $genero;
+
+    private array $notas = [];
 
     public function getNome(): string
     {
@@ -27,16 +28,6 @@ class Filme
         $this->anoLancamento = $anoLancamento;
     }
 
-    public function getNota(): float
-    {
-        return $this->nota;
-    }
-
-    public function setNota(float $nota): void
-    {
-        $this->nota = $nota;
-    }
-
     public function getGenero(): string
     {
         return $this->genero;
@@ -45,5 +36,18 @@ class Filme
     public function setGenero(string $genero): void
     {
         $this->genero = $genero;
+    }
+
+    public function avaliarNota(float $nota): void
+    {
+        //o "this" é o ponteiro que aponta para o endereço do objeto que executou o método
+        if ($nota >= 0 && $nota <= 10) {
+            $this->notas[] = $nota;
+        }
+    }
+
+    public function calcularMediaNotas(): float
+    {
+        return array_sum($this->notas) / count($this->notas);
     }
 }

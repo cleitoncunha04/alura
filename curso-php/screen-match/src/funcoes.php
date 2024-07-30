@@ -13,14 +13,14 @@ function exibirMensagemLancamento(int $anoLancamento): void
             : "Este filme não é um lançamento\n");
 }
 
-function criarFilme(string $nome, int $ano, float $nota, string $genero): Filme
+function criarFilme(string $nome, int $anoLancamento, string $genero, float $nota): array
 {
-    $filme = new Filme();
-
-    $filme-> setNome($nome);
-    $filme-> setAnoLancamento($ano);
-    $filme-> setNota($nota);
-    $filme-> setGenero($genero);
+    $filme = [
+        "nome" => $nome,
+        "anoLancamento" => $anoLancamento,
+        "genero" => $genero,
+        "nota" => $nota,
+    ];
 
     return $filme;
 }
