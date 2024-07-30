@@ -1,4 +1,6 @@
 <?php
+require __DIR__ . '/src/Modelo/Filme.php';
+
 //por padrão busca o arquivo dentro da pasta onde o arquivo .php foi executado -> caminho relativo
 //require "funcoes.php";
 
@@ -85,17 +87,17 @@ $filme = criarFilme(
     genero: "Super-Herói"
 );
 
-echo $filme["nome"] . PHP_EOL;
+echo $filme->getAnoLancamento(). PHP_EOL;
 
 var_dump($notas);
 echo sort($notas) . PHP_EOL . PHP_EOL;
 echo min($notas) . PHP_EOL . PHP_EOL;
 
-$posicaoDoisPontos = strpos($filme["nome"], ":");
+$posicaoDoisPontos = strpos($filme->getNome(), ":");
 var_dump($posicaoDoisPontos);
 
 //busca a partir da posicao 0 até a posicao dos ":"
-var_dump(substr($filme["nome"], 0, $posicaoDoisPontos));
+var_dump(substr($filme->getNome(), 0, $posicaoDoisPontos));
 
 //echo json_encode($filme) . PHP_EOL;
 
