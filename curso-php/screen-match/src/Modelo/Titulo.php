@@ -1,5 +1,6 @@
 <?php
-class Titulo {
+//a classe título funciona como uma espécie de rascunho para as outras classes -> ideia genérica -> abstract class -> pode ter métodos abstratos, que serão feitos nas classes filhas (derivadas) dela -> classes abstratas não podem ser instanciadas
+abstract class Titulo {
     private array $notas;
 
     //método construtor -> não pode retornar nada, o retorno é o próprio objeto que foi criado
@@ -43,8 +44,6 @@ class Titulo {
         return number_format(array_sum($this->notas) / count($this->notas), 2, ',', '.');
     }
 
-    public function calcularDuracaoEmMinutos(): int
-    {
-        return 0;
-    }
+    //torno o método como abstract já que a implementação dele varia de classe para classe
+    abstract public function calcularDuracaoEmMinutos(): int;
 }
