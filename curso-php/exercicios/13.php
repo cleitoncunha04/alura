@@ -32,14 +32,16 @@ class ContaBancariaa
     }
 }
 
-class ContaCorrente extends ContaBancariaa {
+class ContaCorrente extends ContaBancariaa
+{
     public function __construct(string $nome, float $saldo)
     {
         parent::__construct($nome, $saldo);
     }
 
     #[Override]
-    public function sacar($valor): void {
+    public function sacar($valor): void
+    {
         if ($valor > 0 && $valor < $this->saldo) {
             $this->saldo -= $valor * 1.1;
         }

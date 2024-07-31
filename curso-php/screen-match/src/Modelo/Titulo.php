@@ -42,4 +42,9 @@ class Titulo {
     {
         return number_format(array_sum($this->notas) / count($this->notas), 2, ',', '.');
     }
+
+    public function calcularDuracaoEmMinutos(): int
+    {
+        return 0;
+    }
 }

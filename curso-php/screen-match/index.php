@@ -3,6 +3,7 @@ require __DIR__ . '/src/Modelo/Genero.php';
 require __DIR__ . '/src/Modelo/Titulo.php';
 require __DIR__ . '/src/Modelo/Serie.php';
 require __DIR__ . '/src/Modelo/Filme.php';
+require __DIR__ . '/src/Calculos/CalculadoraMaratona.php';
 
 echo "Bem-vindo(a) ao ScreenMatch!\n";
 
@@ -40,3 +41,11 @@ $serie->avaliarNota(8);
 $serie->avaliarNota(7.3);
 
 echo $serie->calcularMediaNotas() . PHP_EOL;
+
+$calculadoraMaratona = new CalculadoraMaratona();
+
+$calculadoraMaratona->incluirTitulo($filme);
+
+$calculadoraMaratona->incluirTitulo($serie);
+
+echo "Será necessário " . $calculadoraMaratona->getDuracaoMaratona() . " minutos para maratonar tudo!\n";

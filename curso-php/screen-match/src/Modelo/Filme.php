@@ -11,4 +11,9 @@ class Filme extends Titulo
         //permite acessar como parametro os atributos da classe filme no construtor do título
         parent::__construct($nome, $anoLancamento, $genero);
     }
+
+    #[Override]
+    public function calcularDuracaoEmMinutos() : int {
+        return $this->duracaoEmMinutos;
+    }
 }
