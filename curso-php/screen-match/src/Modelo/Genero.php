@@ -1,5 +1,6 @@
 <?php
 
+namespace ScreenMatch\Modelo;
 //Enumera todos os valores possíveis, uma espécie de lista/array -> define um novo tipo
 enum Genero: string
 {

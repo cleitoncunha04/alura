@@ -1,5 +1,6 @@
 <?php
 
+namespace ScreenMatch\Modelo;
 class Serie extends Titulo
 {
     public function __construct(

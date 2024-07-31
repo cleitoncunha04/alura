@@ -1,9 +1,12 @@
 <?php
+//espécie de "pasta virtual"
+namespace ScreenMatch\Modelo;
 
 //a classe título funciona como uma espécie de rascunho para as outras classes -> ideia genérica -> abstract class -> pode ter métodos abstratos, que serão feitos nas classes filhas (derivadas) dela -> classes abstratas não podem ser instanciadas
 abstract class Titulo implements Avaliavel
 {
-    private array $notas;
+    //--> basicamente, copia o código da trait e cola aqui
+    use ComAvaliacao;
 
     //método construtor -> não pode retornar nada, o retorno é o próprio objeto que foi criado
     //geralmente, toda inicialização de atributo fica no construtor
@@ -15,35 +18,6 @@ abstract class Titulo implements Avaliavel
         public readonly Genero $genero,
     )
     {
-        $this->notas = [];
-    }
-
-    /*public function getNome(): string
-    {
-        return $this->nome;
-    }
-
-    public function getAnoLancamento(): int
-    {
-        return $this->anoLancamento;
-    }
-
-    public function getGenero(): string
-    {
-        return $this->genero;
-    }*/
-
-    public function avaliarNota(float $nota): void
-    {
-        //o "this" é o ponteiro que aponta para o endereço do objeto que executou o método
-        if ($nota >= 0 && $nota <= 10) {
-            $this->notas[] = $nota;
-        }
-    }
-
-    public function calcularMediaNotas(): float
-    {
-        return array_sum($this->notas) / count($this->notas);
     }
 
     //torno o método como abstract já que a implementação dele varia de classe para classe

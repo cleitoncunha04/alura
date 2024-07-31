@@ -1,5 +1,7 @@
 <?php
 
+namespace ScreenMatch\Modelo;
+
 //especie de classe sem atributos com todos os métodos abstratos
 interface Avaliavel
 {
