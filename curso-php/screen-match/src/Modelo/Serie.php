@@ -1,6 +1,8 @@
 <?php
 
 namespace ScreenMatch\Modelo;
+use Override;
+
 class Serie extends Titulo
 {
     public function __construct(

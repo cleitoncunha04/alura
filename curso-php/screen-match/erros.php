@@ -1,5 +1,6 @@
 <?php
 
+use ScreenMatch\Calculos\ConversorNotaEstrela;
 use ScreenMatch\Modelo\Episodio;
 use ScreenMatch\Modelo\Genero;
 use ScreenMatch\Modelo\Serie;
@@ -10,7 +11,13 @@ $serie = new Serie("Teste", 2024, Genero::Acao, 5, 10, 50);
 
 $episodio = new Episodio($serie, "Piloto", 1);
 
-$episodio->avaliarNota(10);
-$episodio->avaliarNota(5);
+try {
+    $episodio->avaliarNota(10);
+    $episodio->avaliarNota(-5);
 
-echo $episodio->calcularMediaNotas();
+    $conversor = new ConversorNotaEstrela();
+
+    echo $conversor->converterNotaEstrela($episodio);
+} catch (Exception $e) {
+    echo "Erro: " . $e->getMessage();
+}

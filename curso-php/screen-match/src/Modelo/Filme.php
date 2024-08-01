@@ -2,6 +2,8 @@
 
 namespace ScreenMatch\Modelo;
 
+use Override;
+
 class Filme extends Titulo
 {
     public function __construct(
