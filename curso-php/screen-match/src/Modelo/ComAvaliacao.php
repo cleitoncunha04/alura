@@ -17,6 +17,8 @@ trait ComAvaliacao
 
     public function calcularMediaNotas(): float
     {
-        return array_sum($this->notas) / count($this->notas);
+        return array_sum($this->notas) == 0
+                ? 0 :
+                array_sum($this->notas) / count($this->notas);
     }
 }
