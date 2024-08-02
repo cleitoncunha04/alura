@@ -1,0 +1,18 @@
+{
+  "name": "cleitoncunha04/buscador-cursos-alura",
+  "description": "Projeto com o intuito de buscar os cursos disponíveis no site da Alura",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Cleitoncunha04\\BuscadorCursosAlura\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Cleiton dos Santos Cunha",
+      "email": "102325156+cleitoncunha04@users.noreply.github.com"
+    }
+  ],
+  "require": {}
+}
