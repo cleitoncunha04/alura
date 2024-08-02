@@ -8,7 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e698687-7405-4d74-96ce-73793590b766" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/screen-match/src/funcoes.php" beforeDir="false" afterPath="$PROJECT_DIR$/screen-match/src/funcoes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
     &quot;PHP Script.01.php.executor&quot;: &quot;Run&quot;,
     &quot;PHP Script.screen-match.php.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;curso-php&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -91,6 +91,8 @@
       <workItem from="1722107337719" duration="2984000" />
       <workItem from="1722282190515" duration="17811000" />
       <workItem from="1722359478644" duration="1282000" />
+      <workItem from="1722557990165" duration="108000" />
+      <workItem from="1722558111605" duration="73000" />
     </task>
     <servers />
   </component>
