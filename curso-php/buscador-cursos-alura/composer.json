@@ -4,6 +4,7 @@
   "type": "library",
   "license": "MIT",
   "autoload": {
+    "_comment" : "Foi mapeado o namespace padrão pra a pasta src",
     "psr-4": {
       "Cleitoncunha04\\BuscadorCursosAlura\\": "src/"
     }
