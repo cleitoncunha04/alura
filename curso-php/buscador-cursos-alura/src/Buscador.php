@@ -8,20 +8,20 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class Buscador
 {
-    /**
-     * @var ClientInterface
-     */
+    //**
+     //* @var ClientInterface
+     /*/
     //private $httpClient;
     /**
      * @var Crawler
      */
     //private $crawler;
 
+    //constructor property promotion
     public function __construct(
         public readonly ClientInterface $httpClient,
-        public readonly Crawler         $crawler
-    )
-    {
+        public readonly Crawler $crawler
+    ) {
     }
 
     public function buscarConteudo(string $url): array
@@ -46,7 +46,7 @@ class Buscador
             $cursos[] = "Ocorreu um erro ao buscar o curso: " . $e->getMessage();
         }
 
-        if(count($cursos) == 0) {
+        if (count($cursos) == 0) {
             $cursos[] = "Nenhum curso encontrado";
         }
 
