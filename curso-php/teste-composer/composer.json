@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cleitoncunha04/buscador-cursos-alura": "^1.0"
+    }
+}
