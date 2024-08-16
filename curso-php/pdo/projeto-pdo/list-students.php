@@ -6,7 +6,7 @@ require_once 'vendor/autoload.php';
 
 $pdo = new PDO('sqlite:' . __DIR__ . '/db.sqlite');
 
-$statement = $pdo->query("SELECT * FROM students WHERE name = 'Carlitos'");
+$statement = $pdo->query("SELECT * FROM students");
 
 //only instance a Student if the SQL expression match, using foreach
 while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
@@ -16,5 +16,5 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
         new \DateTimeImmutable($row['birth_date'])
     );
 
-    echo $student->age() . PHP_EOL;
+    echo var_dump($student) . PHP_EOL . PHP_EOL;
 }
