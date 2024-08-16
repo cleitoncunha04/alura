@@ -5,11 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="655af187-8404-4c53-94bf-f0a6f32e1ae1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/remove-student.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/insert-student.php" beforeDir="false" afterPath="$PROJECT_DIR$/insert-student.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list-students.php" beforeDir="false" afterPath="$PROJECT_DIR$/list-students.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove-student.php" beforeDir="false" afterPath="$PROJECT_DIR$/remove-student.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,19 +38,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;pdo&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/cleit/OneDrive/Alura/curso-php/pdo/projeto-pdo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "pdo",
+    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/curso-php/pdo/projeto-pdo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "php.override.implement.member.chooser.php.doc": "NONE",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -69,7 +72,7 @@
       <workItem from="1723749344911" duration="27000" />
       <workItem from="1723749429384" duration="32000" />
       <workItem from="1723750740134" duration="7732000" />
-      <workItem from="1723833751429" duration="3741000" />
+      <workItem from="1723833751429" duration="5864000" />
     </task>
     <servers />
   </component>
