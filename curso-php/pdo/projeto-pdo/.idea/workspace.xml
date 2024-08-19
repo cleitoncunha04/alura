@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list-students.php" beforeDir="false" afterPath="$PROJECT_DIR$/list-students.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Model/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Model/Student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" afterDir="false" />
-    </list>
+    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +33,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "pdo",
+    "git-widget-placeholder": "mysql-web",
+    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/alura/curso-php/mysql-web/projeto-serenatto",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
