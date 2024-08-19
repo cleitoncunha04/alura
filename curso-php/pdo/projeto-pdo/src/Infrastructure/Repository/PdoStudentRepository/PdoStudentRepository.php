@@ -2,6 +2,7 @@
 
 namespace Alura\Pdo\Infrastructure\Repository\PdoStudentRepository;
 
+use Alura\Pdo\Domain\Model\Phone;
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
 use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
@@ -41,9 +42,47 @@ class PdoStudentRepository implements StudentRepository
 
     public function findAllStudents(): array
     {
-        $statement = $this->prepareStatement("SELECT * FROM student");
+        $statement = $this->prepareStatement("SELECT * FROM students");
+        $statement->execute();
 
         return $this->hydrateStudents($statement);
+    }
+
+    public function findStudentsWithPhone(): array
+    {
+        $statement = $this->prepareStatement("
+        SELECT
+            students.id,
+            students.name,
+            students.birth_date,
+            phones.id as phone_id,
+            phones.area_code,
+            phones.number
+        FROM students INNER JOIN phones ON students.id = phones.student_id");
+
+        $statement->execute();
+
+        $students = [];
+
+        foreach ($statement->fetchAll() as $studentWithPhoneData) {
+            if (!array_key_exists($studentWithPhoneData['id'], $students)) {
+                $students[$studentWithPhoneData['id']] = new Student(
+                    id: $studentWithPhoneData['id'],
+                    name: $studentWithPhoneData['name'],
+                    birthDate: new \DateTimeImmutable($studentWithPhoneData['birth_date'])
+                );
+            }
+
+            $phone = new Phone(
+                id: $studentWithPhoneData['id'],
+                areaCode: $studentWithPhoneData['area_code'],
+                number: $studentWithPhoneData['number']
+            );
+
+            $students[$studentWithPhoneData['id']]->addPhone($phone);
+        }
+
+        return $students;
     }
 
     public function findStudentsByBirthDate(\DateTimeImmutable $birthDate): array
@@ -57,10 +96,11 @@ class PdoStudentRepository implements StudentRepository
         return $this->hydrateStudents($statement);
     }
 
-    private function addStudent(\Alura\Pdo\Domain\Model\Student $student): bool
+    private
+    function addStudent(\Alura\Pdo\Domain\Model\Student $student): bool
     {
         $statement = $this->prepareStatement(
-            "INSERT INTO studenta (name, birth_date) VALUES (:name, :birth_date);");
+            "INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);");
 
         $result = $statement->execute(
             array(
@@ -76,7 +116,8 @@ class PdoStudentRepository implements StudentRepository
         return $result;
     }
 
-    private function updateStudent(Student $student): bool
+    private
+    function updateStudent(Student $student): bool
     {
         $statement = $this->prepareStatement('UPDATE student SET name = :name, birth_date = :birth_date WHERE id = :id');
 
@@ -87,7 +128,8 @@ class PdoStudentRepository implements StudentRepository
         return $statement->execute();
     }
 
-    public function saveStudent(Student $student): bool
+    public
+    function saveStudent(Student $student): bool
     {
         if ($student->getId() == null) {
             return $this->addStudent($student);
@@ -96,11 +138,12 @@ class PdoStudentRepository implements StudentRepository
         }
     }
 
-    public function removeStudent(\Alura\Pdo\Domain\Model\Student $student): bool
+    public
+    function removeStudent(\Alura\Pdo\Domain\Model\Student $student): bool
     {
-        $statement = $this->prepareStatement("DELETE FROM student WHERE id = :id");
+        $statement = $this->prepareStatement("DELETE FROM students WHERE id = :id");
 
-        $statement->bindValue($student->getId(), 1, PDO::PARAM_INT);
+        $statement->bindValue(":id", $student->getId(), PDO::PARAM_INT);
 
         $result = $statement->execute();
 
@@ -118,4 +161,5 @@ class PdoStudentRepository implements StudentRepository
 
         return $result;
     }
+
 }

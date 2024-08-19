@@ -6,10 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create-class.php" beforeDir="false" afterPath="$PROJECT_DIR$/create-class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/connection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/list-students.php" beforeDir="false" afterPath="$PROJECT_DIR$/list-students.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Model/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Model/Student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +50,11 @@
     "php.override.implement.member.chooser.php.doc": "NONE",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -75,7 +81,8 @@
       <workItem from="1723872834779" duration="575000" />
       <workItem from="1723915787512" duration="3225000" />
       <workItem from="1724003126339" duration="601000" />
-      <workItem from="1724023756805" duration="8971000" />
+      <workItem from="1724023756805" duration="9127000" />
+      <workItem from="1724075599987" duration="6847000" />
     </task>
     <servers />
   </component>
