@@ -6,11 +6,14 @@ use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Domain\Repository\StudentRepository;
 use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
 use PDO;
+use PDOException;
 use PDOStatement;
+use RuntimeException;
 
 class PdoStudentRepository implements StudentRepository
 {
     private PDO $connection;
+
     public function __construct(PDO $connection)
     {
         $this->connection = $connection;
@@ -25,7 +28,7 @@ class PdoStudentRepository implements StudentRepository
     {
         $students = [];
 
-        foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $studentData) {
+        foreach ($statement->fetchAll() as $studentData) {
             $students[] = new Student(
                 $studentData['id'],
                 $studentData['name'],
@@ -56,14 +59,15 @@ class PdoStudentRepository implements StudentRepository
 
     private function addStudent(\Alura\Pdo\Domain\Model\Student $student): bool
     {
-        $result =  $this->prepareStatement(
-            "INSERT INTO students (name, birth_date) VALUES (:name, :birth_date);")
-            ->execute(
-                array(
-                    ':name' => $student->name,
-                    ':birth_date' => $student->birthDate->format('Y-m-d')
-                )
-            );
+        $statement = $this->prepareStatement(
+            "INSERT INTO studenta (name, birth_date) VALUES (:name, :birth_date);");
+
+        $result = $statement->execute(
+            array(
+                ':name' => $student->name,
+                ':birth_date' => $student->birthDate->format('Y-m-d')
+            )
+        );
 
         if ($result) {
             $student->setId($this->connection->lastInsertId());

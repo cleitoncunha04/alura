@@ -19,3 +19,7 @@ while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
 
     echo var_dump($student) . PHP_EOL . PHP_EOL;
 }
+
+if($statement->rowCount() == 0) {
+    echo "There is no student" . PHP_EOL;
+}

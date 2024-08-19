@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/create-class.php" beforeDir="false" afterPath="$PROJECT_DIR$/create-class.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list-students.php" beforeDir="false" afterPath="$PROJECT_DIR$/list-students.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +51,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\cleit\OneDrive\Alura\alura\curso-php\pdo\projeto-pdo" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -65,7 +75,7 @@
       <workItem from="1723872834779" duration="575000" />
       <workItem from="1723915787512" duration="3225000" />
       <workItem from="1724003126339" duration="601000" />
-      <workItem from="1724023756805" duration="5037000" />
+      <workItem from="1724023756805" duration="8971000" />
     </task>
     <servers />
   </component>
