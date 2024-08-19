@@ -4,56 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="" />
+    <list default="true" id="b7978d5c-9f4e-44a7-80ba-b51d21397c8c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
-    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  <component name="ComposerSettings">
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
-    <include_path>
-      <path value="$PROJECT_DIR$/vendor/composer" />
-    </include_path>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 0
-}</component>
-  <component name="ProjectId" id="2klzDenbN5abujpSskOQt9ln3kh" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2kt9btCvLxHx3iqASpAwGlxVf97" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.admin.html.executor": "Run",
+    "JavaScript Debug.index.html.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "pdo",
-    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/alura/curso-php/mysql-web/projeto-serenatto",
+    "git-widget-placeholder": "mysql-web",
+    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/alura/curso-php/pdo/projeto-pdo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "php.override.implement.member.chooser.php.doc": "NONE",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
-    ]
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\cleit\OneDrive\Alura\alura\curso-php\pdo\projeto-pdo" />
-    </key>
+  <component name="RunManager">
+    <configuration name="index.php" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/projeto-serenatto/index.php" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.php" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -66,16 +61,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="" />
-      <created>1723872833442</created>
+      <changelist id="b7978d5c-9f4e-44a7-80ba-b51d21397c8c" name="Changes" comment="" />
+      <created>1724092080381</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1723872833442</updated>
-      <workItem from="1723872834779" duration="575000" />
-      <workItem from="1723915787512" duration="3225000" />
-      <workItem from="1724003126339" duration="601000" />
-      <workItem from="1724023756805" duration="9127000" />
-      <workItem from="1724075599987" duration="6847000" />
+      <updated>1724092080381</updated>
+      <workItem from="1724092081405" duration="6460000" />
     </task>
     <servers />
   </component>
