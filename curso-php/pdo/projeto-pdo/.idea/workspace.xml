@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="" />
+    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../mysql-web/projeto-serenatto/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../mysql-web/projeto-serenatto/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../mysql-web/projeto-serenatto/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/../../mysql-web/projeto-serenatto/index.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,7 +37,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "mysql-web",
-    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/alura/curso-php/mysql-web/projeto-serenatto",
+    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/alura/curso-php/pdo/projeto-pdo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -76,6 +79,7 @@
       <workItem from="1724003126339" duration="601000" />
       <workItem from="1724023756805" duration="9127000" />
       <workItem from="1724075599987" duration="6847000" />
+      <workItem from="1724099674775" duration="9000" />
     </task>
     <servers />
   </component>

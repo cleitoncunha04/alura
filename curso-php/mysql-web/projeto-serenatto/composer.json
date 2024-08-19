@@ -1,0 +1,11 @@
+{
+    "name": "vendor/serenatto",
+    "description": "Projeto em que aprendo a trabalhar com o PHP na Web, me conectando a um banco MySQL",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\Serenatto\\": "src/"
+        }
+    },
+    "require": {}
+}
