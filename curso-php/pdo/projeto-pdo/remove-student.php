@@ -2,10 +2,13 @@
 
 use Alura\Pdo\Domain\Model\Student;
 use Alura\Pdo\Infrastructure\Persistence\ConnectionCreator;
+use Alura\Pdo\Infrastructure\Repository\PdoStudentRepository\PdoStudentRepository;
 
 require_once 'vendor/autoload.php';
 
 $pdo = ConnectionCreator::createConnection();
+
+$repository = new PdoStudentRepository($pdo);
 
 $preparedStatement = $pdo->prepare('DELETE FROM students WHERE id = :id;');
 

@@ -4,14 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="655af187-8404-4c53-94bf-f0a6f32e1ae1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Persistence/ConnectionCreator.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository.php" afterDir="false" />
+    <list default="true" id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository/PdoStudentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/projeto-pdo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projeto-pdo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/insert-student.php" beforeDir="false" afterPath="$PROJECT_DIR$/insert-student.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list-students.php" beforeDir="false" afterPath="$PROJECT_DIR$/list-students.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove-student.php" beforeDir="false" afterPath="$PROJECT_DIR$/remove-student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Model/Student.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Model/Student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Domain/Repository/StudentRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Infrastructure/Repository/PdoStudentRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,15 +32,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php-8.3.8\php.exe">
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\php\php.exe">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
     </include_path>
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 0
 }</component>
-  <component name="ProjectId" id="2khuGXrxk64XRmKScZ0uRHQVw01" />
+  <component name="ProjectId" id="2klzDenbN5abujpSskOQt9ln3kh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,37 +49,36 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "pdo",
-    "last_opened_file_path": "C:/Users/cleit/OneDrive/Alura/curso-php/pdo/projeto-pdo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "php.override.implement.member.chooser.php.doc": "NONE",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.18034.69" />
-        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.18034.69" />
+        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-PS-242.20224.361" />
+        <option value="bundled-php-predefined-a98d8de5180a-d6acee4cb394-com.jetbrains.php.sharedIndexes-PS-242.20224.361" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="655af187-8404-4c53-94bf-f0a6f32e1ae1" name="Changes" comment="" />
-      <created>1723748035397</created>
+      <changelist id="73ee3463-44ef-443e-98d9-fa0b0bd7b8d5" name="Changes" comment="" />
+      <created>1723872833442</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1723748035397</updated>
-      <workItem from="1723748036243" duration="1299000" />
-      <workItem from="1723749344911" duration="27000" />
-      <workItem from="1723749429384" duration="32000" />
-      <workItem from="1723750740134" duration="7732000" />
-      <workItem from="1723833751429" duration="5864000" />
+      <updated>1723872833442</updated>
+      <workItem from="1723872834779" duration="575000" />
+      <workItem from="1723915787512" duration="3225000" />
+      <workItem from="1724003126339" duration="601000" />
+      <workItem from="1724023756805" duration="3497000" />
     </task>
     <servers />
   </component>
