@@ -3,7 +3,6 @@
 namespace Vendor\Serenatto\Conexao;
 
 use PDO;
-
 class Conexao {
     public static function getConexao() : PDO
     {

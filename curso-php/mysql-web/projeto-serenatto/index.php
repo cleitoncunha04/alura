@@ -1,19 +1,14 @@
 <?php
 
-use Vendor\Serenatto\Conexao;
+use Vendor\Serenatto\Conexao\Conexao;
 
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 $conexao = Conexao::getConexao();
 
-$statement = $conexao->query('SELECT * FROM serenatto WHERE tipo = "Café"');
+$produtosCafe = $conexao->query('SELECT * FROM produtos WHERE tipo = "Café" ORDER BY preco')->fetchAll();
 
-$produtosCafe =$statement->fetchAll();
-
-var_dump($produtosCafe);
-
-exit();
-
+$produtosAlmoco = $conexao->query('SELECT * FROM produtos WHERE tipo = "Almoço" ORDER BY preco')->fetchAll();
 ?>
 
 <!doctype html>
@@ -50,7 +45,7 @@ exit();
             <?php foreach ($produtosCafe as $produtoCafe) : ?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?= $produtoCafe['imagem']; ?>" alt="<?= $produtoCafe['nome']; ?>">
+                        <img src="<?= "img/" . $produtoCafe['imagem']; ?>" alt="<?= $produtoCafe['nome']; ?>">
                     </div>
                     <p><?= $produtoCafe['nome'] ?></p>
                     <p><?= $produtoCafe['descricao'] ?></p>
@@ -68,7 +63,7 @@ exit();
             <?php foreach ($produtosAlmoco as $produtoAlmoco) : ?>
             <div class="container-produto">
                 <div class="container-foto">
-                    <img src="<?= $produtoAlmoco['imagem']; ?>" alt="<?= $produtoAlmoco['nome']; ?>">
+                    <img src="<?= "img/" . $produtoAlmoco['imagem']; ?>" alt="<?= $produtoAlmoco['nome']; ?>">
                 </div>
                 <p><?= $produtoAlmoco['nome']; ?></p>
                 <p><?= $produtoAlmoco['descricao']; ?></p>

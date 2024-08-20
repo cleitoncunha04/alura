@@ -7,5 +7,7 @@
             "Vendor\\Serenatto\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }
