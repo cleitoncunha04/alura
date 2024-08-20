@@ -17,13 +17,6 @@ class ProductRepository implements Repository
     ) {
     }
 
-    private function validateProduct($object): void
-    {
-        if (!$object instanceof Product) {
-            throw new InvalidArgumentException('O objeto deve ser uma instância de Product');
-        }
-    }
-
     private function prepareStatement(string $query): PDOStatement
     {
         return $this->connection->prepare($query);
@@ -32,17 +25,17 @@ class ProductRepository implements Repository
     /**
     * @return Product[]
     */
-    private function hydrateProduct(PDOStatement $statement): array
+    private function hydrateProducts(PDOStatement $statement): array
     {
-        //crio
+        //cria uma cópia do array associativo em um array de Product
         return array_map(function ($product) {
             return new Product(
                 id: $product['id'],
                 type: $product['tipo'],
                 name: $product['nome'],
                 description: $product['descricao'],
-                image: $product['imagem'],
                 price: $product['preco'],
+                image: $product['imagem'],
             );
         },  $statement->fetchAll());
     }
@@ -55,7 +48,7 @@ class ProductRepository implements Repository
 
         $statement->execute();
 
-        return $this->hydrateProduct($statement);
+        return $this->hydrateProducts($statement);
     }
 
     public function findByType(string $type): array
@@ -67,7 +60,7 @@ class ProductRepository implements Repository
 
         $statement->execute([':type' => $type]);
 
-        return $this->hydrateProduct($statement);
+        return $this->hydrateProducts($statement);
     }
 
     private function addProduct(object $product): bool
@@ -83,7 +76,7 @@ class ProductRepository implements Repository
             ':type' => $product->type,
             ':name' => $product->name,
             ':description' => $product->description,
-            ':image' => $product->image,
+            ':image' => $product->getImage(),
             ':price' => $product->price
         ]);
     }
@@ -107,28 +100,30 @@ class ProductRepository implements Repository
             ':type' => $product->type,
             ':name' => $product->name,
             ':description' => $product->description,
-            ':image' => $product->image,
+            ':image' => $product->getImage(),
             ':price' => $product->price
         ]);
     }
 
     public function save(object $object): bool
     {
-        $this->validateProduct($object);
-
-        if ($object->id !== null) {
-            return $this->updateProduct($object);
+        if (!$object instanceof Product) {
+            throw new InvalidArgumentException('O objeto deve ser uma instância de Product');
         } else {
-            return $this->addProduct($object);
+            if ($object->id !== null) {
+                return $this->updateProduct($object);
+            } else {
+                return $this->addProduct($object);
+            }
         }
     }
 
-    public function delete(object $object): bool
+    public function delete(int $id): bool
     {
-        $this->validateProduct($object);
-
         $statement = $this->prepareStatement('DELETE FROM produtos WHERE id = :id');
 
-        return $statement->execute([':id' => $object->id]);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+        return $statement->execute();
     }
 }

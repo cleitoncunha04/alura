@@ -24,7 +24,7 @@
         <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
     </section>
     <section class="container-form">
-        <form action="#">
+        <form action="src/add-product.php" method="post">
 
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required>
@@ -42,7 +42,7 @@
             <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição" required>
 
             <label for="preco">Preço</label>
-            <input type="text" id="preco" name="preco" placeholder="Digite uma descrição" required>
+            <input type="text" id="preco" name="preco" placeholder="Digite o preço" required>
 
             <label for="imagem">Envie uma imagem do produto</label>
             <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">

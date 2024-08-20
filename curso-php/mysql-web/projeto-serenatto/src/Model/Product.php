@@ -9,8 +9,8 @@ class Product
         public readonly string $type,
         public readonly string $name,
         public readonly string $description,
-        public readonly string $image,
         public readonly float  $price,
+        private string $image = "logo-serenatto.png",
     ) {
     }
 
@@ -22,5 +22,15 @@ class Product
     public function numberFormatter(): string
     {
         return "R$ " . number_format($this->price, 2, ',', '.');
+    }
+
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
     }
 }
