@@ -1,14 +1,17 @@
 <?php
 
-use Vendor\Serenatto\Conexao\Conexao;
+use Vendor\Serenatto\Connection\Connection;
+use Vendor\Serenatto\Repository\ProductRepository;
 
 require 'vendor/autoload.php';
 
-$conexao = Conexao::getConexao();
+$connection = Connection::createConnection();
 
-$produtosCafe = $conexao->query('SELECT * FROM produtos WHERE tipo = "Café" ORDER BY preco')->fetchAll();
+$repository = new ProductRepository($connection);
 
-$produtosAlmoco = $conexao->query('SELECT * FROM produtos WHERE tipo = "Almoço" ORDER BY preco')->fetchAll();
+$coffeeProducts = $repository->findByType('Café');
+
+$lunchProducts = $repository->findByType('Almoço');
 ?>
 
 <!doctype html>
@@ -42,14 +45,14 @@ $produtosAlmoco = $conexao->query('SELECT * FROM produtos WHERE tipo = "Almoço"
             <img class="ornaments" src="img/ornaments-coffee.png" alt="ornaments">
         </div>
         <div class="container-cafe-manha-produtos">
-            <?php foreach ($produtosCafe as $produtoCafe) : ?>
+            <?php foreach ($coffeeProducts as $coffeeProduct) : ?>
                 <div class="container-produto">
                     <div class="container-foto">
-                        <img src="<?= "img/" . $produtoCafe['imagem']; ?>" alt="<?= $produtoCafe['nome']; ?>">
+                        <img src="<?= $coffeeProduct->generateImageUrl() ?>" alt="<?= $coffeeProduct->name ?>">
                     </div>
-                    <p><?= $produtoCafe['nome'] ?></p>
-                    <p><?= $produtoCafe['descricao'] ?></p>
-                    <p><?= "R$ " . $produtoCafe['preco'] ?></p>
+                    <p><?= $coffeeProduct->name ?></p>
+                    <p><?= $coffeeProduct->description ?></p>
+                    <p><?= $coffeeProduct->numberFormatter() ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -60,15 +63,15 @@ $produtosAlmoco = $conexao->query('SELECT * FROM produtos WHERE tipo = "Almoço"
             <img class="ornaments" src="img/ornaments-coffee.png" alt="ornaments">
         </div>
         <div class="container-almoco-produtos">
-            <?php foreach ($produtosAlmoco as $produtoAlmoco) : ?>
-            <div class="container-produto">
-                <div class="container-foto">
-                    <img src="<?= "img/" . $produtoAlmoco['imagem']; ?>" alt="<?= $produtoAlmoco['nome']; ?>">
+            <?php foreach ($lunchProducts as $lunchProduct) : ?>
+                <div class="container-produto">
+                    <div class="container-foto">
+                        <img src="<?= $lunchProduct->generateImageUrl(); ?>" alt="<?= $lunchProduct->name; ?>">
+                    </div>
+                    <p><?= $lunchProduct->name; ?></p>
+                    <p><?= $lunchProduct->description; ?></p>
+                    <p><?= $lunchProduct->numberFormatter(); ?></p>
                 </div>
-                <p><?= $produtoAlmoco['nome']; ?></p>
-                <p><?= $produtoAlmoco['descricao']; ?></p>
-                <p><?= "R$ {$produtoAlmoco['preco']}";?></p>
-            </div>
             <?php endforeach; ?>
         </div>
 
