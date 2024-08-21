@@ -57,7 +57,7 @@ $products = $repository->findAll();
                     <td><?= $product->type; ?></td>
                     <td><?= $product->description; ?></td>
                     <td><?= $product->numberFormatter(); ?></td>
-                    <td><a class="botao-editar" href="editar-produto.html">Editar</a></td>
+                    <td><a class="botao-editar" href="editar-produto.php?id=<?= $product->id; ?>">Editar</a></td>
                     <td>
                         <form action="src/remove-product.php" method="post">
                             <input type="hidden" name="id" value="<?= $product->id ?>">
@@ -69,7 +69,7 @@ $products = $repository->findAll();
             </tbody>
         </table>
         <a class="botao-cadastrar" href="cadastrar-produto.php">Cadastrar produto</a>
-        <form action="#" method="post">
+        <form action="src/pdf-generator.php" method="post">
             <input type="submit" class="botao-cadastrar" value="Baixar Relatório"/>
         </form>
     </section>

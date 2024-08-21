@@ -1,3 +1,17 @@
+<?php
+
+use Vendor\Serenatto\Connection\Connection;
+use Vendor\Serenatto\Repository\ProductRepository;
+
+require_once('vendor/autoload.php');
+
+$connection = Connection::createConnection();
+
+$repository = new ProductRepository($connection);
+
+$product = $repository->findById($_GET['id'])[0];
+?>
+
 <!doctype html>
 <html lang="pt-br">
 <head>
@@ -24,32 +38,34 @@
     <img class= "ornaments" src="img/ornaments-coffee.png" alt="ornaments">
   </section>
   <section class="container-form">
-    <form action="#">
+    <form action="src/save-product.php" method="post" enctype="multipart/form-data">
 
       <label for="nome">Nome</label>
-      <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" required>
+      <input type="text" id="nome" name="nome" placeholder="Digite o nome do produto" value="<?= $product->name; ?>" required>
 
       <div class="container-radio">
         <div>
             <label for="cafe">Café</label>
-            <input type="radio" id="cafe" name="tipo" value="Café" checked>
+            <input type="radio" id="cafe" name="tipo" value="Café" <?= $product->type == "Café" ? "checked" : "";?>>
         </div>
         <div>
             <label for="almoco">Almoço</label>
-            <input type="radio" id="almoco" name="tipo" value="Almoço">
+            <input type="radio" id="almoco" name="tipo" value="Almoço" <?= $product->type == "Almoço" ? "checked" : "";?>>
         </div>
     </div>
 
       <label for="descricao">Descrição</label>
-      <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição" required>
+      <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição" value="<?= $product->description; ?>" required>
 
       <label for="preco">Preço</label>
-      <input type="text" id="preco" name="preco" placeholder="Digite uma descrição" required>
+      <input type="text" id="preco" name="preco" placeholder="Digite um preço" value="<?= $product->price; ?>" required>
 
       <label for="imagem">Envie uma imagem do produto</label>
-      <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem">
+      <input type="file" name="imagem" accept="image/*" id="imagem" placeholder="Envie uma imagem" value="<?= $product->getImage(); ?>">
 
-      <input type="submit" name="editar" class="botao-cadastrar"  value="Editar produto"/>
+        <input type="hidden" name="id" value="<?= $_GET['id']; ?>">
+
+      <input type="submit" name="salvar" class="botao-cadastrar"  value="Editar produto"/>
     </form>
 
   </section>

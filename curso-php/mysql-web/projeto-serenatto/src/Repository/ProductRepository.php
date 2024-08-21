@@ -14,7 +14,8 @@ class ProductRepository implements Repository
 
     public function __construct(
         public readonly PDO $connection
-    ) {
+    )
+    {
     }
 
     private function prepareStatement(string $query): PDOStatement
@@ -23,8 +24,8 @@ class ProductRepository implements Repository
     }
 
     /**
-    * @return Product[]
-    */
+     * @return Product[]
+     */
     private function hydrateProducts(PDOStatement $statement): array
     {
         //cria uma cópia do array associativo em um array de Product
@@ -37,7 +38,7 @@ class ProductRepository implements Repository
                 price: $product['preco'],
                 image: $product['imagem'],
             );
-        },  $statement->fetchAll());
+        }, $statement->fetchAll());
     }
 
     public function findAll(): array
@@ -45,6 +46,17 @@ class ProductRepository implements Repository
         $statement = $this->prepareStatement("
             SELECT * FROM produtos ORDER BY preco
         ");
+
+        $statement->execute();
+
+        return $this->hydrateProducts($statement);
+    }
+
+    public function findById(int $id): array
+    {
+        $statement = $this->prepareStatement("SELECT * FROM produtos WHERE id = :id");
+
+        $statement->bindParam(":id", $id, PDO::PARAM_INT);
 
         $statement->execute();
 
@@ -81,6 +93,18 @@ class ProductRepository implements Repository
         ]);
     }
 
+    private function updateImageProduct(object $product): bool
+    {
+        return $this->prepareStatement("
+            UPDATE produtos 
+            SET 
+                imagem = :image 
+            WHERE id = :id
+            ")->execute([
+            ':image' => $product->getImage(),
+        ]);
+    }
+
     private function updateProduct(object $product): bool
     {
         $statement = $this->prepareStatement('
@@ -89,18 +113,20 @@ class ProductRepository implements Repository
                 tipo = :type,
                 nome = :name,
                 descricao = :description,
-                imagem = :image,
                 preco = :price
             WHERE 
                 id = :id;
         ');
+
+        if($product->getImage() !== "logo-serenatto.png") {
+            $this->updateImageProduct($product);
+        }
 
         return $statement->execute([
             ':id' => $product->id,
             ':type' => $product->type,
             ':name' => $product->name,
             ':description' => $product->description,
-            ':image' => $product->getImage(),
             ':price' => $product->price
         ]);
     }
