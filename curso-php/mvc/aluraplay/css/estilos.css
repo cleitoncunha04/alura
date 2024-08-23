@@ -64,6 +64,10 @@ body {
     color: black;
 }
 
+iframe {
+    border-radius: 5px;
+}
+
 .mensagem {
     display: grid;
     align-items: center;
