@@ -1,5 +1,4 @@
 <?php
-// Corrigir a obtenção e validação do parâmetro 'success'
 $success = filter_input(INPUT_GET, 'success', FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 ?>
 <!DOCTYPE html>
@@ -7,7 +6,7 @@ $success = filter_input(INPUT_GET, 'success', FILTER_VALIDATE_BOOLEAN, FILTER_NU
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <title>Mensagem</title>
     <style>
         body {
@@ -60,14 +59,14 @@ $success = filter_input(INPUT_GET, 'success', FILTER_VALIDATE_BOOLEAN, FILTER_NU
 </head>
 <body>
 <div class="container">
-    <?php if ($success === true) : ?>
+    <?php if ($success) : ?>
         <h1>Sucesso!</h1>
         <p>Ação realizada com sucesso.</p>
     <?php else : ?>
         <h1>Erro!</h1>
         <p>Ocorreu um erro ao realizar a ação.<br>Por favor, tente novamente.</p>
     <?php endif; ?>
-    <a href="../index.php" class="button">Voltar para a lista de vídeos</a>
+    <a href="/" class="button">Voltar para a lista de vídeos</a>
 </div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 
 namespace Mvc\Aluraplay\Model;
 
-readonly class Video
+class Video
 {
     public function __construct(
         public ?int   $id,

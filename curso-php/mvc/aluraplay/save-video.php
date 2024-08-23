@@ -4,8 +4,6 @@ use Mvc\Aluraplay\Model\Connection;
 use Mvc\Aluraplay\Model\Video;
 use Mvc\Aluraplay\Model\VideoRepository;
 
-require '../vendor/autoload.php';
-
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 
 $title = filter_input(INPUT_POST, 'titulo');
@@ -13,7 +11,7 @@ $title = filter_input(INPUT_POST, 'titulo');
 $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
 if (!$url || !$title) {
-    header("Location: ../pages/message.php?success=false");
+    header("Location: /message?success=false");
 
     exit();
 }
@@ -29,7 +27,7 @@ $connection = Connection::createConnection();
 $repository = new VideoRepository($connection);
 
 if ($repository->save($video)) {
-    header("Location: ../pages/message.php?success=true");
+    header("Location: /message?success=true");
 } else {
-    header("Location: ../pages/message.php?success=false");
+    header("Location: /message?success=false");
 }

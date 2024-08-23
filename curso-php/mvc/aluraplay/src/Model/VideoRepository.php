@@ -86,7 +86,7 @@ class VideoRepository implements Repository
         if (!$object instanceof Video) {
             return throw new InvalidArgumentException('$object must be an instance of Video');
         } else {
-            if($object->id == null || $object->id == 0) {
+            if($object->id == 0) {
                 return $this->add($object);
             } else {
                 return $this->update($object);
