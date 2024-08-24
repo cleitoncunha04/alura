@@ -1,15 +1,17 @@
 <?php
 
-namespace Mvc\Aluraplay\Model;
+namespace Mvc\Aluraplay\Repository;
 
 use InvalidArgumentException;
+use Mvc\Aluraplay\Entity\Video;
+use Mvc\Aluraplay\Model\Repository;
 use PDO;
 use PDOStatement;
 
-class VideoRepository implements Repository
+readonly class VideoRepository implements Repository
 {
     public function __construct(
-        public PDO $pdo
+        private PDO $pdo
     ) {
     }
 

@@ -1,19 +1,37 @@
 <?php
 
+use Mvc\Aluraplay\Controller\{
+    Controller,
+    Error404Controller,
+    VideoFormController,
+    VideoListController,
+    VideoMessageController,
+    VideoRemoveController,
+    VideoSaveController
+};
+use Mvc\Aluraplay\Model\Connection;
+use Mvc\Aluraplay\Repository\VideoRepository;
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
-if (!array_key_exists("PATH_INFO", $_SERVER) || $_SERVER['PATH_INFO'] === '/' ) {
-    require_once __DIR__ . '/../list-videos.php';
+$videoRepository = new VideoRepository(Connection::createConnection());
+
+if (!array_key_exists("PATH_INFO", $_SERVER) || $_SERVER['PATH_INFO'] === '/') {
+    $controller = new VideoListController($videoRepository);
 } elseif ($_SERVER['PATH_INFO'] === '/save-video') {
+    $controller = new VideoSaveController($videoRepository);
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        require_once __DIR__ . '/../save-video.php';
+        $controller = new VideoSaveController($videoRepository);
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        require_once __DIR__ . '/../enviar-video.php';
+        $controller = new VideoFormController($videoRepository);
     }
 } elseif ($_SERVER['PATH_INFO'] === '/remove-video') {
-    require_once __DIR__ . '/../remove-video.php';
+    $controller = new VideoRemoveController($videoRepository);
 } elseif ($_SERVER['PATH_INFO'] === '/message') {
-    require_once __DIR__ . '/../message.php';
+    $controller = new VideoMessageController($videoRepository);
 } else {
-    http_response_code(404);
+    $controller = new Error404Controller();
 }
+
+/** @var Controller $controller */
+$controller->processRequest();

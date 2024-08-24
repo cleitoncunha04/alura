@@ -1,13 +1,17 @@
 <?php
 
 use Mvc\Aluraplay\Model\Connection;
-use Mvc\Aluraplay\Model\VideoRepository;
+use Mvc\Aluraplay\Repository\VideoRepository;
 
 $connection = Connection::createConnection();
 
 $repository = new VideoRepository($connection);
 
-$videos = $repository->findAll();
+try {
+    $videos = $repository->findAll();
+} catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
 ?>
 
 <?php require_once 'start-html.php'; ?>
