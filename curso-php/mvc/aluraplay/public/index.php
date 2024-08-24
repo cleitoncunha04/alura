@@ -1,37 +1,31 @@
 <?php
 
-use Mvc\Aluraplay\Controller\{
-    Controller,
+use Mvc\Aluraplay\Controller\{Controller,
     Error404Controller,
     VideoFormController,
     VideoListController,
     VideoMessageController,
     VideoRemoveController,
-    VideoSaveController
-};
+    VideoSaveController};
 use Mvc\Aluraplay\Model\Connection;
-use Mvc\Aluraplay\Repository\VideoRepository;
+use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 $videoRepository = new VideoRepository(Connection::createConnection());
 
-if (!array_key_exists("PATH_INFO", $_SERVER) || $_SERVER['PATH_INFO'] === '/') {
-    $controller = new VideoListController($videoRepository);
-} elseif ($_SERVER['PATH_INFO'] === '/save-video') {
-    $controller = new VideoSaveController($videoRepository);
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $controller = new VideoSaveController($videoRepository);
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        $controller = new VideoFormController($videoRepository);
-    }
-} elseif ($_SERVER['PATH_INFO'] === '/remove-video') {
-    $controller = new VideoRemoveController($videoRepository);
-} elseif ($_SERVER['PATH_INFO'] === '/message') {
-    $controller = new VideoMessageController($videoRepository);
+$routes = require __DIR__ . "/../config/routes.php";
+
+$pathInfo = $_SERVER['PATH_INFO'] ?? "/";
+$httpMethod = $_SERVER['REQUEST_METHOD'];
+
+if(array_key_exists("$httpMethod|$pathInfo", $routes)) {
+    $controllerClass = $routes["$httpMethod|$pathInfo"];
+
+
+    $controller = new $controllerClass($videoRepository);
 } else {
     $controller = new Error404Controller();
 }
-
 /** @var Controller $controller */
 $controller->processRequest();

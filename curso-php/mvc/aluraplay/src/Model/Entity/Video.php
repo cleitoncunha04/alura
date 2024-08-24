@@ -1,6 +1,6 @@
 <?php
 
-namespace Mvc\Aluraplay\Entity;
+namespace Mvc\Aluraplay\Model\Entity;
 
 use InvalidArgumentException;
 

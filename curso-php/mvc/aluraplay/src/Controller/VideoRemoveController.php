@@ -2,7 +2,7 @@
 
 namespace Mvc\Aluraplay\Controller;
 
-use Mvc\Aluraplay\Repository\VideoRepository;
+use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
 readonly class VideoRemoveController implements Controller
 {

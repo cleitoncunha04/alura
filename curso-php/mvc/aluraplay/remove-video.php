@@ -1,7 +1,7 @@
 <?php
 
 use Mvc\Aluraplay\Model\Connection;
-use Mvc\Aluraplay\Repository\VideoRepository;
+use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 

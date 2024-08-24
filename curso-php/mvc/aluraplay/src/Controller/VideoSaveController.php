@@ -2,8 +2,8 @@
 
 namespace Mvc\Aluraplay\Controller;
 
-use Mvc\Aluraplay\Entity\Video;
-use Mvc\Aluraplay\Repository\VideoRepository;
+use Mvc\Aluraplay\Model\Entity\Video;
+use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
 readonly class VideoSaveController implements Controller
 {

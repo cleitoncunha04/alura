@@ -1,8 +1,8 @@
 <?php
 
-use Mvc\Aluraplay\Entity\Video;
 use Mvc\Aluraplay\Model\Connection;
-use Mvc\Aluraplay\Repository\VideoRepository;
+use Mvc\Aluraplay\Model\Entity\Video;
+use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
 $url = filter_input(INPUT_POST, 'url', FILTER_VALIDATE_URL);
 

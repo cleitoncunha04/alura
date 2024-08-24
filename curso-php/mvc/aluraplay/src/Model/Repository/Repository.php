@@ -1,6 +1,6 @@
 <?php
 
-namespace Mvc\Aluraplay\Model;
+namespace Mvc\Aluraplay\Model\Repository;
 
 interface Repository
 {

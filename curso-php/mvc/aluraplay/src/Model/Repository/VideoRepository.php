@@ -1,10 +1,9 @@
 <?php
 
-namespace Mvc\Aluraplay\Repository;
+namespace Mvc\Aluraplay\Model\Repository;
 
 use InvalidArgumentException;
-use Mvc\Aluraplay\Entity\Video;
-use Mvc\Aluraplay\Model\Repository;
+use Mvc\Aluraplay\Model\Entity\Video;
 use PDO;
 use PDOStatement;
 
