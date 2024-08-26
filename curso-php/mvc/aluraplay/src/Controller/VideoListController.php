@@ -4,11 +4,10 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
-class VideoListController
+readonly class VideoListController
 {
-
     public function __construct(
-            public readonly VideoRepository $videoRepository
+            public VideoRepository $videoRepository
     ) {
     }
 

@@ -6,7 +6,7 @@ $success = filter_input(INPUT_GET, 'success', FILTER_VALIDATE_BOOLEAN, FILTER_NU
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../public/img/favicon.ico" type="image/x-icon">
     <title>Mensagem</title>
     <style>
         body {

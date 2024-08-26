@@ -23,7 +23,7 @@
 
         <div class="cabecalho__icones">
             <a href="/save-video" class="cabecalho__videos"></a>
-            <a href="/public/pages/login.html" class="cabecalho__sair">Sair</a>
+            <a href="/login" class="cabecalho__sair">Sair</a>
         </div>
     </nav>
 

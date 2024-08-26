@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/alura_play</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="alura_play@localhost [2]" uuid="ed73013a-e144-4ddb-adcf-8bfaf63fc185">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/alura_play</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
