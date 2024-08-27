@@ -7,6 +7,7 @@ use Mvc\Aluraplay\Model\Repository\Repository;
 use Mvc\Aluraplay\Model\Repository\UserRepository;
 use function header;
 use function password_verify;
+use function session_start;
 
 class LoginController implements Controller
 {
@@ -17,11 +18,14 @@ class LoginController implements Controller
 
         $userRepository = new UserRepository(Connection::createConnection());
 
+        $user = $userRepository->findByEmail($email)[0];
 
         if (password_verify($password, $user->password ?? '')) {
+            $_SESSION['loggedIn'] = true;
+
             header('Location: /message?success=true');
         } else {
-            header('Location: /message?success=false');
+            header('Location: /login?success=false');
         }
         
     }

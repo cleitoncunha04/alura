@@ -21,6 +21,15 @@ $routes = require __DIR__ . "/../config/routes.php";
 $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 
+session_start();
+
+$isLoggedRoute = $pathInfo === "/login";
+
+if (!array_key_exists('loggedIn', $_SESSION) && !$isLoggedRoute) {
+    header('Location: /login');
+
+    return;
+}
 
 
 if (array_key_exists("$httpMethod|$pathInfo", $routes)) {
@@ -34,3 +43,5 @@ if (array_key_exists("$httpMethod|$pathInfo", $routes)) {
 }
 /** @var Controller $controller */
 $controller->processRequest();
+
+

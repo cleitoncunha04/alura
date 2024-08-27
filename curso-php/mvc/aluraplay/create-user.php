@@ -10,13 +10,12 @@ $password = password_hash($argv[2], PASSWORD_ARGON2ID);
 
 $connection = Connection::createConnection();
 
-$statment = $connection->prepare("SELECT * FROM users WHERE email = :email");
+$statment = $connection->prepare("INSERT INTO users (email, password) VALUES (:email, :password)");
 $statment->bindValue(':email', $email);
-$statment->execute();
+$statment->bindValue(':password', $password);
 
-$user = $statment->fetch(PDO::FETCH_ASSOC);
+var_dump($statment->execute());
 
-var_dump($user);
 echo $password . PHP_EOL;
 
 
