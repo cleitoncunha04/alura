@@ -22,10 +22,6 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Mvc\\Aluraplay\\Model\\Connection' => __DIR__ . '/../..' . '/src/Model/Connection.php',
-        'Mvc\\Aluraplay\\Model\\Repository' => __DIR__ . '/../..' . '/src/Model/Repository.php',
-        'Mvc\\Aluraplay\\Model\\Video' => __DIR__ . '/../..' . '/src/Model/Video.php',
-        'Mvc\\Aluraplay\\Model\\VideoRepository' => __DIR__ . '/../..' . '/src/Model/VideoRepository.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

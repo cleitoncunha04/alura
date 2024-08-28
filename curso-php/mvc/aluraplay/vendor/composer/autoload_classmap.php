@@ -7,8 +7,4 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Mvc\\Aluraplay\\Model\\Connection' => $baseDir . '/src/Model/Connection.php',
-    'Mvc\\Aluraplay\\Model\\Repository' => $baseDir . '/src/Model/Repository.php',
-    'Mvc\\Aluraplay\\Model\\Video' => $baseDir . '/src/Model/Video.php',
-    'Mvc\\Aluraplay\\Model\\VideoRepository' => $baseDir . '/src/Model/VideoRepository.php',
 );
