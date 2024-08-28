@@ -12,6 +12,7 @@ class Video
         public ?int   $id,
         string $url,
         public string $title,
+        private ?string $filePath = null,
     ) {
         $this->setUrl($url);
     }
@@ -30,5 +31,18 @@ class Video
         return str_contains($this->url, "https://www.youtube.com/watch?v=")
             ? str_replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/", $this->url)
             : $this->url;
+    }
+
+    public function setFilePath(string $filePath): void
+    {
+        $this->filePath = $filePath;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
     }
 }
