@@ -19,12 +19,17 @@ readonly class JsonVideoListController implements Controller
     {
         $videos = array_map(function (Video $video) : array {
 
+            $filePath = "";
+
+            if ($video->getFilePath() !== null) {
+                $filePath = "/img/uploads/" . $video->getFilePath();
+            }
 
             return [
                 "id" => $video->id,
                 "url" => $video->generateVideoUrl(),
                 "title" => $video->title,
-                "file_path" => "/img/uploads/" . $video->getFilePath(),
+                "file_path" => $filePath,
             ];
         }, $this->videoRepository->findAll()) ;
 
