@@ -11,6 +11,7 @@ return [
     'GET|/login' => \Mvc\Aluraplay\Controller\LoginFormController::class,
     'POST|/login' => \Mvc\Aluraplay\Controller\LoginController::class,
     'GET|/logout' => \Mvc\Aluraplay\Controller\LogoutController::class,
-    'GET|/videos-json' => \Mvc\Aluraplay\Controller\VideoListJson::class,
+    'GET|/videos-json' => \Mvc\Aluraplay\Controller\JsonVideoListController::class,
     'GET|/remove-image-path' => \Mvc\Aluraplay\Controller\VideoRemoveImagePathController::class,
+    'POST|/videos' => \Mvc\Aluraplay\Controller\NewJsonVideoController::class,
 ];
