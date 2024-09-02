@@ -4,8 +4,9 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 use function filter_input;
+use function var_dump;
 
-class VideoFormController implements Controller
+class VideoFormController extends ControllerWithHtml implements Controller
 {
     public function __construct(
         public VideoRepository $videoRepository
@@ -23,6 +24,9 @@ class VideoFormController implements Controller
             $video = $this->videoRepository->findById($id)[0];
         }
 
-        require_once __DIR__ . '/../../views/video-form.php';
+        var_dump($id);
+
+        echo $this->renderTemplate('video-form.php',
+            ['video' => $video]);
     }
 }

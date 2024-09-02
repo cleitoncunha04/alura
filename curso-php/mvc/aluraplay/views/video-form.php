@@ -3,7 +3,6 @@
 require_once __DIR__ . '/start-html.php';
 /***
  * @var ?Video $video
- * @var ?int $id
  */
 ?>
     <main class="container">
@@ -41,7 +40,7 @@ require_once __DIR__ . '/start-html.php';
                 />
             </div>
 
-            <input type="hidden" name="id" value="<?= $id; ?>">
+            <input type="hidden" name="id" value="<?= $video?->id; ?>">
 
             <input class="formulario__botao" type="submit" value="Enviar"/>
         </form>

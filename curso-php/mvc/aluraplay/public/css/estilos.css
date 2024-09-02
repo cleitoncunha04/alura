@@ -24,6 +24,10 @@ body {
 
 /* ESTILOS DO HEADER */
 
+body > header {
+    height: 80px;
+}
+
 .cabecalho {
     background-color: white;
     position: fixed;
@@ -66,6 +70,11 @@ body {
 
 iframe {
     border-radius: 5px;
+}
+
+.videos__item img {
+    width: 100%;
+    height: 70%;
 }
 
 .mensagem {

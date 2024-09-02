@@ -4,7 +4,7 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
-readonly class VideoListController
+class VideoListController extends ControllerWithHtml implements Controller
 {
     public function __construct(
         public VideoRepository $videoRepository
@@ -16,6 +16,7 @@ readonly class VideoListController
     {
         $videos = $this->videoRepository->findAll();
 
-        require_once __DIR__ . "/../../views/video-list.php";
+        echo $this->renderTemplate('video-list.php',
+            ['videos' => $videos]);
     }
 }
