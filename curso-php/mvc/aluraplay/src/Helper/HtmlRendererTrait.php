@@ -1,12 +1,16 @@
 <?php
 
-namespace Mvc\Aluraplay\Controller;
+namespace Mvc\Aluraplay\Helper;
 
-abstract class ControllerWithHtml implements Controller
+use function extract;
+use function ob_get_clean;
+use function ob_start;
+
+trait HtmlRendererTrait
 {
     private const string TEMPLATE_PATH = __DIR__ . '/../../views/';
 
-    protected function renderTemplate(string $templateName, array $context = []): string
+    private function renderTemplate(string $templateName, array $context = []): string
     {
         extract($context);
 
@@ -15,6 +19,4 @@ abstract class ControllerWithHtml implements Controller
         require_once self::TEMPLATE_PATH . $templateName;
         return ob_get_clean();
     }
-
-    abstract public function processRequest(): void;
 }

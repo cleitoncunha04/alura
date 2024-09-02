@@ -2,10 +2,14 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\FlashMessageTrait;
+use Mvc\Aluraplay\Helper\HtmlRendererTrait;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 
-class VideoListController extends ControllerWithHtml implements Controller
+class VideoListController implements Controller
 {
+    use HtmlRendererTrait;
+
     public function __construct(
         public VideoRepository $videoRepository
     )

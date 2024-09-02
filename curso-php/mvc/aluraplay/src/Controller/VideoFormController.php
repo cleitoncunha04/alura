@@ -2,12 +2,15 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\HtmlRendererTrait;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 use function filter_input;
 use function var_dump;
 
-class VideoFormController extends ControllerWithHtml implements Controller
+class VideoFormController implements Controller
 {
+    use HtmlRendererTrait;
+
     public function __construct(
         public VideoRepository $videoRepository
     )

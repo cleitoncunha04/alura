@@ -3,6 +3,7 @@
 namespace Mvc\Aluraplay\Controller;
 
 use finfo;
+use Mvc\Aluraplay\Helper\FlashMessageTrait;
 use Mvc\Aluraplay\Model\Entity\Video;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 use function header;
@@ -17,6 +18,8 @@ use function var_dump;
 
 readonly class VideoSaveController implements Controller
 {
+    use FlashMessageTrait;
+
     public function __construct(
         public VideoRepository $videoRepository
     )
@@ -32,9 +35,11 @@ readonly class VideoSaveController implements Controller
         $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
 
         if (!$url || !$title) {
-            header("Location: /message?success=false");
+            $this->addErrorMessage('Fill all fields correctly');
 
-            exit();
+            header("Location: /save-video");
+
+            return;
         }
 
         $video = new Video(
@@ -79,9 +84,11 @@ readonly class VideoSaveController implements Controller
 
 
         if ($this->videoRepository->save($video)) {
-            header("Location: /message?success=true");
+            header("Location: /");
         } else {
-            header("Location: /message?success=false");
+            $this->addErrorMessage('Error on adding a video');
+
+            header("Location: /save-video");
         }
 
     }

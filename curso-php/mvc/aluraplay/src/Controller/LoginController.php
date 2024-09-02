@@ -2,6 +2,7 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\FlashMessageTrait;
 use Mvc\Aluraplay\Model\Connection;
 use Mvc\Aluraplay\Model\Entity\User;
 use Mvc\Aluraplay\Model\Repository\Repository;
@@ -14,6 +15,8 @@ use function session_start;
 
 class LoginController implements Controller
 {
+    use FlashMessageTrait;
+
     public function processRequest(): void
     {
         $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
@@ -36,9 +39,11 @@ class LoginController implements Controller
 
             $_SESSION['loggedIn'] = true;
 
-            header('Location: /message?success=true');
+            header('Location: /');
         } else {
-            header('Location: /login?success=false');
+            $this->addErrorMessage("Wrong email or password");
+
+            header('Location: /login');
         }
 
     }

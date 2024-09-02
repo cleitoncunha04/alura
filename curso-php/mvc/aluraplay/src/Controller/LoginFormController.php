@@ -2,10 +2,13 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\HtmlRendererTrait;
 use function header;
 
-class LoginFormController extends ControllerWithHtml implements Controller
+class LoginFormController implements Controller
 {
+    use HtmlRendererTrait;
+
     public function processRequest(): void
     {
         if(array_key_exists('loggedIn', $_SESSION) && $_SESSION['loggedIn']) {

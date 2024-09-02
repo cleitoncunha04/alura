@@ -115,10 +115,15 @@ iframe {
     cursor: pointer;
 }
 
-@media(min-width: 834px) {
+@media (min-width: 834px) {
 
     body {
         height: 100vh;
     }
 
+}
+
+h2.formulario__erro {
+    color: #cc3030;
+    margin-top: 1rem;
 }
