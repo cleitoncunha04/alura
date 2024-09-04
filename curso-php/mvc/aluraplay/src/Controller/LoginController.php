@@ -19,6 +19,12 @@ use function session_start;
 
 class LoginController implements RequestHandlerInterface
 {
+    public function __construct(
+        public readonly UserRepository $userRepository,
+    ) {
+
+    }
+
     use FlashMessageTrait;
 
     public function handle(ServerRequestInterface $request): ResponseInterface
@@ -28,9 +34,7 @@ class LoginController implements RequestHandlerInterface
         $email = filter_var( $queryParams['email'], FILTER_VALIDATE_EMAIL);
         $password = filter_var($queryParams['password']);
 
-        $userRepository = new UserRepository(Connection::createConnection());
-
-        $user = $userRepository->findByEmail($email)[0];
+        $user = $this->userRepository->findByEmail($email)[0];
 
         if (password_verify($password, $user->password ?? '')) {
             if (password_needs_rehash($user->password, PASSWORD_ARGON2ID)) {
@@ -40,7 +44,7 @@ class LoginController implements RequestHandlerInterface
                     password: password_hash($password, PASSWORD_ARGON2ID)
                 );
 
-                $userRepository->save($newPasswordUser);
+                $this->userRepository->save($newPasswordUser);
             }
 
             $_SESSION['loggedIn'] = true;

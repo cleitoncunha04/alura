@@ -6,11 +6,16 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
 {
+    public static $files = array (
+        'b33e3d135e5d9e47d845c576147bda89' => __DIR__ . '/..' . '/php-di/php-di/src/functions.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
             'Psr\\Http\\Server\\' => 16,
             'Psr\\Http\\Message\\' => 17,
+            'Psr\\Container\\' => 14,
         ),
         'N' => 
         array (
@@ -20,6 +25,18 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
         'M' => 
         array (
             'Mvc\\Aluraplay\\' => 14,
+        ),
+        'L' => 
+        array (
+            'Laravel\\SerializableClosure\\' => 28,
+        ),
+        'I' => 
+        array (
+            'Invoker\\' => 8,
+        ),
+        'D' => 
+        array (
+            'DI\\' => 3,
         ),
     );
 
@@ -33,6 +50,10 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
             0 => __DIR__ . '/..' . '/psr/http-factory/src',
             1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Nyholm\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/nyholm/psr7/src',
@@ -44,6 +65,18 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
         'Mvc\\Aluraplay\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Laravel\\SerializableClosure\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravel/serializable-closure/src',
+        ),
+        'Invoker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/invoker/src',
+        ),
+        'DI\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-di/php-di/src',
         ),
     );
 
