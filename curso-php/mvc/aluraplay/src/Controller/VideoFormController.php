@@ -4,10 +4,14 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Helper\HtmlRendererTrait;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use function filter_input;
 use function var_dump;
 
-class VideoFormController implements Controller
+class VideoFormController implements RequestHandlerInterface
 {
     use HtmlRendererTrait;
 
@@ -17,9 +21,11 @@ class VideoFormController implements Controller
     {
     }
 
-    public function processRequest(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $queryParams = $request->getQueryParams();
+
+        $id = filter_var($queryParams['id'], FILTER_SANITIZE_NUMBER_INT);
 
         $video = null;
 
@@ -27,9 +33,7 @@ class VideoFormController implements Controller
             $video = $this->videoRepository->findById($id)[0];
         }
 
-        var_dump($id);
-
-        echo $this->renderTemplate('video-form.php',
-            ['video' => $video]);
+        return new Response(status: 302, body: $this->renderTemplate('video-form.php',
+            ['video' => $video]));
     }
 }

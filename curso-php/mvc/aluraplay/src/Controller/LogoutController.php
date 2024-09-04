@@ -2,15 +2,19 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use function header;
 
-class LogoutController implements Controller
+class LogoutController implements RequestHandlerInterface
 {
 
-    public function processRequest(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
         unset($_SESSION['loggedIn']);
 
-        header('Location: /login');
+        return new Response(302, ['Location' => '/login']);
     }
 }

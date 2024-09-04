@@ -1,18 +1,10 @@
 <?php
 
-use Mvc\Aluraplay\Controller\{
-    Controller,
-    Error404Controller,
-    LoginController,
-    VideoFormController,
-    VideoListController,
-    VideoMessageController,
-    VideoRemoveController,
-    VideoSaveController
-};
+use Mvc\Aluraplay\Controller\Error404Controller;
 use Mvc\Aluraplay\Model\Connection;
 use Mvc\Aluraplay\Model\Repository\UserRepository;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Psr\Http\Server\RequestHandlerInterface;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
@@ -54,7 +46,31 @@ if (array_key_exists("$httpMethod|$pathInfo", $routes)) {
 } else {
     $controller = new Error404Controller();
 }
-/** @var Controller $controller */
-$controller->processRequest();
+
+$psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+
+$creator = new \Nyholm\Psr7Server\ServerRequestCreator(
+    $psr17Factory, // ServerRequestFactory
+    $psr17Factory, // UriFactory
+    $psr17Factory, // UploadedFileFactory
+    $psr17Factory  // StreamFactory
+);
+
+// passa as variaveis, como $_POST, $_GET, $_FILES, $_COOKIES, etc.
+$request = $creator->fromGlobals();
+
+/** @var RequestHandlerInterface $controller */
+$response = $controller->handle($request);
+
+$response->getHeaders();
+
+http_response_code($response->getStatusCode());
+foreach ($response->getHeaders() as $header => $values) {
+    foreach ($values as $value) {
+        header(sprintf('%s: %s', $header, $value), false);
+    }
+}
+
+echo $response->getBody();
 
 

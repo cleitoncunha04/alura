@@ -7,6 +7,16 @@ namespace Composer\Autoload;
 class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
 {
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Psr\\Http\\Server\\' => 16,
+            'Psr\\Http\\Message\\' => 17,
+        ),
+        'N' => 
+        array (
+            'Nyholm\\Psr7\\' => 12,
+            'Nyholm\\Psr7Server\\' => 18,
+        ),
         'M' => 
         array (
             'Mvc\\Aluraplay\\' => 14,
@@ -14,6 +24,23 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
     );
 
     public static $prefixDirsPsr4 = array (
+        'Psr\\Http\\Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-server-handler/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'Nyholm\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nyholm/psr7/src',
+        ),
+        'Nyholm\\Psr7Server\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nyholm/psr7-server/src',
+        ),
         'Mvc\\Aluraplay\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
