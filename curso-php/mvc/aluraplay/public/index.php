@@ -1,22 +1,15 @@
 <?php
 
-use Mvc\Aluraplay\Controller\{
-    Controller,
-    Error404Controller,
-    LoginController,
-    VideoFormController,
-    VideoListController,
-    VideoMessageController,
-    VideoRemoveController,
-    VideoSaveController
-};
-use Mvc\Aluraplay\Model\Connection;
-use Mvc\Aluraplay\Model\Repository\UserRepository;
-use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Mvc\Aluraplay\Controller\Error404Controller;
+use Psr\Container\ContainerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
 $routes = require __DIR__ . "/../config/routes.php";
+
+/** @var ContainerInterface $diContainer */
+$diContainer = require __DIR__ . "/../config/dependencies.php";
 
 $pathInfo = $_SERVER['PATH_INFO'] ?? "/";
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -48,13 +41,35 @@ if (!array_key_exists('loggedIn', $_SESSION) && !$isLoggedRoute) {
 if (array_key_exists("$httpMethod|$pathInfo", $routes)) {
     $controllerClass = $routes["$httpMethod|$pathInfo"];
 
-    $videoRepository = new VideoRepository(Connection::createConnection());
-
-    $controller = new $controllerClass($videoRepository);
+    $controller = $diContainer->get($controllerClass);
 } else {
     $controller = new Error404Controller();
 }
-/** @var Controller $controller */
-$controller->processRequest();
+
+$psr17Factory = new \Nyholm\Psr7\Factory\Psr17Factory();
+
+$creator = new \Nyholm\Psr7Server\ServerRequestCreator(
+    $psr17Factory, // ServerRequestFactory
+    $psr17Factory, // UriFactory
+    $psr17Factory, // UploadedFileFactory
+    $psr17Factory  // StreamFactory
+);
+
+// passa as variaveis, como $_POST, $_GET, $_FILES, $_COOKIES, etc.
+$request = $creator->fromGlobals();
+
+/** @var RequestHandlerInterface $controller */
+$response = $controller->handle($request);
+
+$response->getHeaders();
+
+http_response_code($response->getStatusCode());
+foreach ($response->getHeaders() as $header => $values) {
+    foreach ($values as $value) {
+        header(sprintf('%s: %s', $header, $value), false);
+    }
+}
+
+echo $response->getBody();
 
 

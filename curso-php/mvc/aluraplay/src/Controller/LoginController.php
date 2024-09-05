@@ -2,26 +2,39 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\FlashMessageTrait;
 use Mvc\Aluraplay\Model\Connection;
 use Mvc\Aluraplay\Model\Entity\User;
 use Mvc\Aluraplay\Model\Repository\Repository;
 use Mvc\Aluraplay\Model\Repository\UserRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use function header;
 use function password_hash;
 use function password_needs_rehash;
 use function password_verify;
 use function session_start;
 
-class LoginController implements Controller
+class LoginController implements RequestHandlerInterface
 {
-    public function processRequest(): void
+    public function __construct(
+        public readonly UserRepository $userRepository,
+    ) {
+
+    }
+
+    use FlashMessageTrait;
+
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
-        $password = filter_input(INPUT_POST, 'password');
+        $queryParams = $request->getParsedBody();
 
-        $userRepository = new UserRepository(Connection::createConnection());
+        $email = filter_var( $queryParams['email'], FILTER_VALIDATE_EMAIL);
+        $password = filter_var($queryParams['password']);
 
-        $user = $userRepository->findByEmail($email)[0];
+        $user = $this->userRepository->findByEmail($email)[0];
 
         if (password_verify($password, $user->password ?? '')) {
             if (password_needs_rehash($user->password, PASSWORD_ARGON2ID)) {
@@ -31,15 +44,16 @@ class LoginController implements Controller
                     password: password_hash($password, PASSWORD_ARGON2ID)
                 );
 
-                $userRepository->save($newPasswordUser);
+                $this->userRepository->save($newPasswordUser);
             }
 
             $_SESSION['loggedIn'] = true;
 
-            header('Location: /message?success=true');
-        } else {
-            header('Location: /login?success=false');
+            return new Response(302, ['Location' => '/']);
         }
 
+        $this->addErrorMessage("Wrong email or password");
+
+        return new Response(302, ['Location' => '/login']);
     }
 }

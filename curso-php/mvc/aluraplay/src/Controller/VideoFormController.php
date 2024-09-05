@@ -2,20 +2,29 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use League\Plates\Engine;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use function filter_input;
+use function var_dump;
 
-class VideoFormController implements Controller
+class VideoFormController implements RequestHandlerInterface
 {
     public function __construct(
-        public VideoRepository $videoRepository
+        public VideoRepository $videoRepository,
+        private readonly Engine $templates
     )
     {
     }
 
-    public function processRequest(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $queryParams = $request->getQueryParams();
+
+        $id = filter_var($queryParams['id'] ?? '', FILTER_SANITIZE_NUMBER_INT);
 
         $video = null;
 
@@ -23,6 +32,7 @@ class VideoFormController implements Controller
             $video = $this->videoRepository->findById($id)[0];
         }
 
-        require_once __DIR__ . '/../../views/video-form.php';
+        return new Response(status: 302, body: $this->templates->render('video-form',
+            ['video' => $video]));
     }
 }

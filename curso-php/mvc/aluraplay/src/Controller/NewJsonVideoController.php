@@ -4,8 +4,12 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Model\Entity\Video;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-readonly class NewJsonVideoController implements Controller
+readonly class NewJsonVideoController implements RequestHandlerInterface
 {
     public function __construct(
         private VideoRepository $videoRepository
@@ -14,9 +18,9 @@ readonly class NewJsonVideoController implements Controller
 
     }
 
-    public function processRequest(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $request = file_get_contents('php://input');
+        $request = $request->getBody()->getContents();
 
         $videoData = json_decode($request, true);
 
@@ -26,9 +30,9 @@ readonly class NewJsonVideoController implements Controller
         );
 
         if ($this->videoRepository->save($video)) {
-            http_response_code(201);
+           return new Response(201);
         }
 
-
+        return new Response(400);
     }
 }

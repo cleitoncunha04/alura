@@ -2,32 +2,33 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use Mvc\Aluraplay\Helper\RemoveVideoImageTrait;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
+use Nyholm\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use function header;
 use function unlink;
 use function var_dump;
 
-class VideoRemoveImagePathController implements Controller
+class VideoRemoveImagePathController implements RequestHandlerInterface
 {
+    use RemoveVideoImageTrait;
+
     public function __construct(
         public VideoRepository $videoRepository
     ) {
     }
 
-    public function processRequest(): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $queryParams = $request->getQueryParams();
 
-        $video = $this->videoRepository->findById($id)[0];
+        $id = filter_var( $queryParams['id'], FILTER_SANITIZE_NUMBER_INT);
 
-        $filePath = __DIR__ . "/../../public/img/uploads/" . $video->getFilePath();
+        $this->removeVideoImage($id, $this->videoRepository);
 
-        if (file_exists($filePath)) {
-            var_dump(unlink($filePath));
-
-            $this->videoRepository->updateImagePathToNull($id);
-        }
-
-        header('Location: /');
+        return new Response(302, ['Location' => '/']);
     }
 }
