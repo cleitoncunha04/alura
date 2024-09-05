@@ -1,6 +1,6 @@
 <?php use Mvc\Aluraplay\Model\Entity\Video;
 
-require_once __DIR__ . '/start-html.php';
+$this->layout('layout');
 /***
  * @var ?Video $video
  */
@@ -46,4 +46,4 @@ require_once __DIR__ . '/start-html.php';
         </form>
 
     </main>
-<?php require_once __DIR__ . '/end-html.php';
+<?php $this->insert('end-html'); ?>

@@ -28,6 +28,7 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
         ),
         'L' => 
         array (
+            'League\\Plates\\' => 14,
             'Laravel\\SerializableClosure\\' => 28,
         ),
         'I' => 
@@ -65,6 +66,10 @@ class ComposerStaticInit9402f14b28eedf91865b24df022e45ad
         'Mvc\\Aluraplay\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'League\\Plates\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/plates/src',
         ),
         'Laravel\\SerializableClosure\\' => 
         array (

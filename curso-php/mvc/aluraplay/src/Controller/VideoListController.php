@@ -2,8 +2,8 @@
 
 namespace Mvc\Aluraplay\Controller;
 
+use League\Plates\Engine;
 use Mvc\Aluraplay\Helper\FlashMessageTrait;
-use Mvc\Aluraplay\Helper\HtmlRendererTrait;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -12,10 +12,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class VideoListController implements RequestHandlerInterface
 {
-    use HtmlRendererTrait;
-
     public function __construct(
-        public VideoRepository $videoRepository
+        public VideoRepository  $videoRepository,
+        private readonly Engine $templates,
     )
     {
     }
@@ -25,7 +24,7 @@ class VideoListController implements RequestHandlerInterface
         $videos = $this->videoRepository->findAll();
 
 
-        return new Response(status: 302, body: $this->renderTemplate('video-list.php',
+        return new Response(status: 302, body: $this->templates->render('video-list',
             ['videos' => $videos]));
     }
 }
