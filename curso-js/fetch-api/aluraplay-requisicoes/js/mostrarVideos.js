@@ -36,4 +36,4 @@ async function listarVideos() {
   }
 }
 
-listarVideos();
+await listarVideos();

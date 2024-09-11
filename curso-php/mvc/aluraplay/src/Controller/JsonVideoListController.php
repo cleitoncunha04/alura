@@ -4,7 +4,6 @@ namespace Mvc\Aluraplay\Controller;
 
 use Mvc\Aluraplay\Model\Entity\Video;
 use Mvc\Aluraplay\Model\Repository\VideoRepository;
-use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

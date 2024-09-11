@@ -33,4 +33,3 @@ $this->layout('layout');
         <?php endforeach; ?>
     </ul>
 
-
