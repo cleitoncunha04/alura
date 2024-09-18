@@ -1,8 +1,3 @@
-let balance = 3000;
-const balanceElement = document.querySelector(".saldo-valor .valor");
-if (balanceElement) {
-    balanceElement.textContent = balance.toString();
-}
 const formElement = document.querySelector('.block-nova-transacao form');
 formElement.addEventListener("submit", (evt) => {
     evt.preventDefault();
@@ -16,17 +11,17 @@ formElement.addEventListener("submit", (evt) => {
     let type = transactionTypeInput.value;
     let value = transactionValueInput.valueAsNumber;
     let date = new Date(transactionDate.value);
-    if (type === "Depósito") {
+    if (type === TransactionType.DEPOSIT) {
         balance += value;
     }
-    else if (type === "Transferência" || type === "Pagamento de boleto") {
+    else if (type === TransactionType.TRANSFER || type === TransactionType.BANK_SLIP_PAYMENT) {
         balance -= value;
     }
     else {
         alert("Invalid transaction!");
         return;
     }
-    balanceElement.textContent = balance.toString();
+    balanceElement.textContent = coinFormatter(balance);
     const newTransaction = {
         transactionType: type,
         value: value,
