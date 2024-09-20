@@ -1,10 +1,11 @@
 import { formatter } from "../utils/formatters.js";
 import { DateType } from "./DateType.js";
 import { TransactionType } from "./TransactionType.js";
+import { Storage } from "./Storage.js";
 export class Account {
     name;
-    balance = JSON.parse(localStorage.getItem("balance")) || 0;
-    transactions = JSON.parse(localStorage.getItem("transactions"), (key, value) => {
+    balance = Storage.get("balance") || 0;
+    transactions = Storage.get(("balance"), (key, value) => {
         if (key === "date") {
             return new Date(value);
         }
@@ -12,6 +13,9 @@ export class Account {
     }) || [];
     constructor(name) {
         this.name = name;
+    }
+    getName() {
+        return this.name;
     }
     getBalance() {
         return this.balance;
@@ -47,7 +51,7 @@ export class Account {
         }
         else {
             this.balance -= value;
-            localStorage.setItem("balance", this.balance.toString());
+            Storage.save("balance", this.balance);
         }
     }
     deposit(value) {
@@ -56,7 +60,7 @@ export class Account {
         }
         else {
             this.balance += value;
-            localStorage.setItem("balance", this.balance.toString());
+            Storage.save("balance", this.balance.toString());
         }
     }
     registerTransaction(newTransaction) {
@@ -71,8 +75,9 @@ export class Account {
             throw new Error("Invalid transaction type");
         }
         this.transactions.push(newTransaction);
-        localStorage.setItem("transactions", JSON.stringify(this.transactions));
+        Storage.save("transactions", this.transactions);
     }
 }
 const account = new Account("Cleiton dos Santos Cunha");
+console.log(account.getName());
 export default account;

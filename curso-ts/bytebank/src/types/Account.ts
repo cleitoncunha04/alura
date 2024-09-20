@@ -3,13 +3,14 @@ import {TransactionsGroup} from "./TransactionsGroup.js";
 import {formatter} from "../utils/formatters.js";
 import {DateType} from "./DateType.js";
 import {TransactionType} from "./TransactionType.js";
+import {Storage} from "./Storage.js";
 
 export class Account {
     private name: string;
 
-    private balance: number = JSON.parse(localStorage.getItem("balance")) || 0;
+    private balance: number = Storage.get("balance") || 0;
 
-    private transactions: Transaction[] = JSON.parse(localStorage.getItem("transactions"), (key: string, value: any) => {
+    private transactions: Transaction[] = Storage.get(("balance"), (key: string, value: any) => {
         if (key === "date") {
             return new Date(value);
         }
@@ -19,6 +20,10 @@ export class Account {
 
     constructor(name: string) {
         this.name = name;
+    }
+
+    public getName(): string {
+        return this.name;
     }
 
     public getBalance(): number {
@@ -65,7 +70,7 @@ export class Account {
         } else {
             this.balance -= value;
 
-            localStorage.setItem("balance", this.balance.toString());
+            Storage.save("balance", this.balance);
         }
     }
 
@@ -75,7 +80,7 @@ export class Account {
         } else {
             this.balance += value;
 
-            localStorage.setItem("balance", this.balance.toString());
+            Storage.save("balance", this.balance.toString());
         }
 
     }
@@ -93,10 +98,11 @@ export class Account {
 
         this.transactions.push(newTransaction);
 
-        localStorage.setItem("transactions", JSON.stringify(this.transactions));
+        Storage.save("transactions", this.transactions);
     }
 }
 
 const account: Account = new Account("Cleiton dos Santos Cunha");
 
+console.log(account.getName());
 export default account;
