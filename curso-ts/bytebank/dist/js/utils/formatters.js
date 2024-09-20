@@ -21,6 +21,12 @@ function dateFormatter(date, format = DateType.DEFAULT) {
             month: "2-digit"
         });
     }
+    else if (format === DateType.MONTH_YEAR) {
+        dateFormatted = date.toLocaleDateString("pt-br", {
+            month: "long",
+            year: "numeric"
+        });
+    }
     else {
         dateFormatted = date.toLocaleDateString("pt-br");
     }

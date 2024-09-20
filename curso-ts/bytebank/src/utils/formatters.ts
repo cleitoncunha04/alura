@@ -1,4 +1,4 @@
-import { DateType } from "../types/DateType.js";
+import {DateType} from "../types/DateType.js";
 
 function coinFormatter(value: number): string
 {
@@ -23,6 +23,11 @@ function dateFormatter(date: Date, format: DateType = DateType.DEFAULT): string
         dateFormatted = date.toLocaleDateString("pt-br", {
             day: "2-digit",
             month: "2-digit"
+        });
+    } else if (format === DateType.MONTH_YEAR) {
+        dateFormatted = date.toLocaleDateString("pt-br", {
+            month:"long",
+            year:"numeric"
         });
     } else {
         dateFormatted = date.toLocaleDateString("pt-br");

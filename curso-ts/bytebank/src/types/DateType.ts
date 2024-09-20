@@ -1,5 +1,6 @@
 export enum DateType {
     DEFAULT = "DD/MM/AAAA",
     WEEKDAY_DAY_MONTH_YEAR = "WEEKDAY, DD/MM/AAAA",
-    DAY_MONTH = "DD/MM"
+    DAY_MONTH = "DD/MM",
+    MONTH_YEAR = "MONTH, AAAA"
 }
