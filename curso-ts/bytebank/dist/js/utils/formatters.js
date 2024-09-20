@@ -1,15 +1,12 @@
-function coinFormatter(value: number): string
-{
+import { DateType } from "../types/DateType.js";
+function coinFormatter(value) {
     return value.toLocaleString("pt-br", {
         currency: "BRL",
         style: "currency"
     });
 }
-
-function dateFormatter(date: Date, format: DateType = DateType.DEFAULT): string
-{
+function dateFormatter(date, format = DateType.DEFAULT) {
     let dateFormatted = "";
-
     if (format === DateType.WEEKDAY_DAY_MONTH_YEAR) {
         dateFormatted = date.toLocaleDateString("pt-br", {
             weekday: "long",
@@ -17,14 +14,19 @@ function dateFormatter(date: Date, format: DateType = DateType.DEFAULT): string
             month: "2-digit",
             year: "numeric"
         });
-    } else if (format === DateType.DAY_MONTH) {
+    }
+    else if (format === DateType.DAY_MONTH) {
         dateFormatted = date.toLocaleDateString("pt-br", {
             day: "2-digit",
             month: "2-digit"
         });
-    } else {
+    }
+    else {
         dateFormatted = date.toLocaleDateString("pt-br");
     }
-
     return dateFormatted;
 }
+export const formatter = {
+    coinFormatter,
+    dateFormatter
+};
