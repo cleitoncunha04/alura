@@ -1,61 +1,38 @@
 import {Transaction} from "./Transaction.js";
-import {TransactionType} from "./TransactionType.js";
 import {TransactionsGroup} from "./TransactionsGroup.js";
 import {formatter} from "../utils/formatters.js";
 import {DateType} from "./DateType.js";
+import {TransactionType} from "./TransactionType.js";
 
-let balance: number = JSON.parse(localStorage.getItem("balance")) || 0;
+export class Account {
+    private name: string;
 
-const transactions: Transaction[] = JSON.parse(localStorage.getItem("transactions"), (key: string, value: string) => {
-    if (key === "date") {
-        return new Date(value);
+    private balance: number = JSON.parse(localStorage.getItem("balance")) || 0;
+
+    private transactions: Transaction[] = JSON.parse(localStorage.getItem("transactions"), (key: string, value: any) => {
+        if (key === "date") {
+            return new Date(value);
+        }
+
+        return value;
+    }) || [];
+
+    constructor(name: string) {
+        this.name = name;
     }
 
-    return value;
-}) || [];
-
-function debit(value: number): void
-{
-    if (value <= 0)  {
-        throw new Error("The amount debited must be greater than 0");
-    } else if (value > balance) {
-        throw new Error ("Insufficient balance");
-    } else {
-        balance -= value;
-
-        localStorage.setItem("balance", balance.toString());
-    }
-}
-
-function deposit(value: number): void
-{
-    if (value <= 0)  {
-        throw new Error("The amount debited must be greater than 0");
-    } else {
-        balance += value;
-
-        localStorage.setItem("balance", balance.toString());
+    public getBalance(): number {
+        return this.balance;
     }
 
-}
-
-const Account = {
-
-    getBalance(): number
-    {
-        return balance;
-    },
-
-    getAccessDate(): Date
-    {
+    public getAccessDate(): Date {
         return new Date();
-    },
+    }
 
-    getTransactionsGroup(): TransactionsGroup[]
-    {
+    public getTransactionsGroup(): TransactionsGroup[] {
         const transactionsGroup: TransactionsGroup[] = [];
 
-        let transactionList: Transaction[] = structuredClone(transactions); //cria uma cópia do array, para que o objeto nao seja passado por referência
+        let transactionList: Transaction[] = structuredClone(this.transactions); //cria uma cópia do array, para que o objeto nao seja passado por referência
 
         transactionList = transactionList.sort((t1, t2) => t2.date.getTime() - t1.date.getTime());
 
@@ -78,26 +55,48 @@ const Account = {
         }
 
         return transactionsGroup;
-    },
+    }
 
-    registerTransaction(newTransaction: Transaction): void
-    {
+    private debit(value: number): void {
+        if (value <= 0) {
+            throw new Error("The amount debited must be greater than 0");
+        } else if (value > this.balance) {
+            throw new Error("Insufficient balance");
+        } else {
+            this.balance -= value;
+
+            localStorage.setItem("balance", this.balance.toString());
+        }
+    }
+
+    private deposit(value: number): void {
+        if (value <= 0) {
+            throw new Error("The amount debited must be greater than 0");
+        } else {
+            this.balance += value;
+
+            localStorage.setItem("balance", this.balance.toString());
+        }
+
+    }
+
+    public registerTransaction(newTransaction: Transaction): void {
         if (newTransaction.transactionType === TransactionType.DEPOSIT) {
-            deposit(newTransaction.value);
+            this.deposit(newTransaction.value);
         } else if (newTransaction.transactionType === TransactionType.TRANSFER || newTransaction.transactionType === TransactionType.BANK_SLIP_PAYMENT) {
-            debit(newTransaction.value);
+            this.debit(newTransaction.value);
 
             newTransaction.value *= -1;
         } else {
             throw new Error("Invalid transaction type");
         }
 
-        transactions.push(newTransaction);
+        this.transactions.push(newTransaction);
 
-        console.log(this.getTransactionsGroup());
-
-        localStorage.setItem("transactions", JSON.stringify(transactions));
+        localStorage.setItem("transactions", JSON.stringify(this.transactions));
     }
-};
+}
 
-export default Account;
+const account: Account = new Account("Cleiton dos Santos Cunha");
+
+export default account;
