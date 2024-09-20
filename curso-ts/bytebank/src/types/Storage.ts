@@ -1,17 +1,14 @@
-export class Storage
-{
+export class Storage {
     private constructor() {
     }
 
-    public static save(key: string, value: any)
-    {
+    static save(key: string, value: any) {
         const valueWithString = JSON.stringify(value);
 
         localStorage.setItem(key, valueWithString);
     }
 
-    public static get(key:string, revive?: (this: any, key: string, value: any) => any)
-    {
+    static get<T>(key: string, revive?: (this: any, key: string, value: any) => any): T | null {
         const value = localStorage.getItem(key);
 
         if (value === null) {
@@ -19,9 +16,9 @@ export class Storage
         }
 
         if (revive) {
-            return JSON.parse(value, revive);
+            return JSON.parse(value, revive) as T;
         }
 
-        return JSON.parse(value);
+        return JSON.parse(value) as T;
     }
 }

@@ -4,13 +4,14 @@ import {formatter} from "../utils/formatters.js";
 import {DateType} from "./DateType.js";
 import {TransactionType} from "./TransactionType.js";
 import {Storage} from "./Storage.js";
+import {ValidateDebit, ValidateDeposit} from "./Decorators.js";
 
 export class Account {
     private name: string;
 
-    private balance: number = Storage.get("balance") || 0;
+    private balance: number = Storage.get<number>("balance") || 0;
 
-    private transactions: Transaction[] = Storage.get(("balance"), (key: string, value: any) => {
+    private transactions: Transaction[] = Storage.get<Transaction[]>(("transactions"), (key: string, value: any) => {
         if (key === "date") {
             return new Date(value);
         }
@@ -62,27 +63,20 @@ export class Account {
         return transactionsGroup;
     }
 
+    @ValidateDebit
     private debit(value: number): void {
-        if (value <= 0) {
-            throw new Error("The amount debited must be greater than 0");
-        } else if (value > this.balance) {
-            throw new Error("Insufficient balance");
-        } else {
-            this.balance -= value;
 
-            Storage.save("balance", this.balance);
-        }
+
+        this.balance -= value;
+
+        Storage.save("balance", this.balance.toString());
     }
 
+    @ValidateDeposit
     private deposit(value: number): void {
-        if (value <= 0) {
-            throw new Error("The amount debited must be greater than 0");
-        } else {
-            this.balance += value;
+        this.balance += value;
 
-            Storage.save("balance", this.balance.toString());
-        }
-
+        Storage.save("balance", this.balance.toString());
     }
 
     public registerTransaction(newTransaction: Transaction): void {
@@ -98,11 +92,25 @@ export class Account {
 
         this.transactions.push(newTransaction);
 
-        Storage.save("transactions", this.transactions);
+        Storage.save("transactions", JSON.stringify(this.transactions));
+    }
+}
+
+export class PremiumAccount extends Account {
+    registerTransaction(transaction: Transaction): void {
+        if (transaction.transactionType === TransactionType.DEPOSIT) {
+            console.log("+R$ 0,50");
+
+            transaction.value += 0.5;
+        }
+
+        super.registerTransaction(transaction);
     }
 }
 
 const account: Account = new Account("Cleiton dos Santos Cunha");
+
+const premiumAccount = new PremiumAccount("Cleiton dos Santos Cunha");
 
 console.log(account.getName());
 export default account;
