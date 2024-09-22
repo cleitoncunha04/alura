@@ -49,7 +49,15 @@ const updateUI = () => {
 
     const addTaskBt = document.querySelector<HTMLButtonElement>('.app__button--add-task');
 
-    addTaskBt.onclick
+    const addTaskForm = document.querySelector<HTMLFormElement>(".app__form-add-task");
+
+    if (!addTaskBt) {
+        throw new Error("Unknown element: addTaskBt");
+    }
+
+    addTaskBt.onclick = () => {
+        addTaskForm?.classList.toggle("hidden");
+    };
 
     if (ulTaskElement) {
         ulTaskElement.innerHTML = "";
@@ -89,3 +97,5 @@ const updateUI = () => {
         ulTaskElement?.appendChild(liTaskElement);
     });
 };
+
+updateUI();
