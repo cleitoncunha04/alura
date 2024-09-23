@@ -6,9 +6,10 @@ interface Task {
 interface AplicationStatus {
     tasks: Task[];
     selectedTask: Task | null;
+    isEditing: boolean;
 }
 
-let inicialStatus: AplicationStatus = {
+let initialStatus: AplicationStatus = {
     tasks: [
         {
             description: 'Tarefa concluída',
@@ -23,8 +24,9 @@ let inicialStatus: AplicationStatus = {
             isCompleted: false
         }
     ],
-    selectedTask: null
-}
+    selectedTask: null,
+    isEditing: false
+};
 
 const selectTask = (status: AplicationStatus, task: Task): AplicationStatus => {
     return {
@@ -33,6 +35,34 @@ const selectTask = (status: AplicationStatus, task: Task): AplicationStatus => {
     };
 };
 
+const addTask = (status: AplicationStatus, task: Task): AplicationStatus => {
+    return {
+        ...status, // faço uma cópia do objeto antigo
+        tasks: [
+            ...status.tasks, // modifico as tarefas, adicionando a nova task
+            task
+        ]
+    };
+};
+
+const editTask = (status: AplicationStatus, updatedTask: Task): AplicationStatus => {
+    return {
+        ...status,
+        tasks: status.tasks.map(task =>
+            task === status.selectedTask ? updatedTask : task
+        ),
+        selectedTask: null,
+        isEditing: false
+    };
+};
+
+const tooggleVisibilityForm = (form: HTMLFormElement) => {
+    form.classList.toggle("hidden");
+};
+
+const cleanFields = (textArea: HTMLTextAreaElement) => {
+    textArea.value = "";
+};
 
 const updateUI = () => {
     const taskIconSvg = `
@@ -45,25 +75,75 @@ const updateUI = () => {
         </svg>
     `;
 
-    const ulTaskElement = document.querySelector(".app__section-task-list") as HTMLUListElement;
+    const selectedTaskLabel = document.querySelector<HTMLLabelElement>('.app__section-active-task-label');
+
+    const deleteCompletedTasksBt = document.querySelector<HTMLButtonElement>('#btn-remover-concluidas');
+
+    const deleteAllTasksBt = document.querySelector<HTMLButtonElement>('#btn-remover-todas');
+
+    const ulTaskElement = document.querySelector<HTMLUListElement>(".app__section-task-list");
 
     const addTaskBt = document.querySelector<HTMLButtonElement>('.app__button--add-task');
 
     const addTaskForm = document.querySelector<HTMLFormElement>(".app__form-add-task");
+
+    const taskTextArea = document.querySelector<HTMLTextAreaElement>(".app__form-textarea");
+
+    const cancelAddTaskBt = document.querySelector<HTMLButtonElement>('.app__form-footer__button--cancel');
+
+    const cleanTextAreaBt = document.querySelector<HTMLButtonElement>('.app__form-footer__button--delete');
+
+    deleteCompletedTasksBt!.onclick = () => {
+        initialStatus.tasks = initialStatus.tasks.filter((task) => !task.isCompleted);
+
+        updateUI();
+    };
+
+    deleteAllTasksBt!.onclick = () => {
+        initialStatus.tasks = [];
+
+        updateUI();
+    };
 
     if (!addTaskBt) {
         throw new Error("Unknown element: addTaskBt");
     }
 
     addTaskBt.onclick = () => {
-        addTaskForm?.classList.toggle("hidden");
+        tooggleVisibilityForm(addTaskForm!);
+    };
+
+    addTaskForm!.onsubmit = (evt) => {
+        evt.preventDefault();
+
+        const newTask = {
+            description: taskTextArea!.value,
+            isCompleted: initialStatus.isEditing ? initialStatus.selectedTask!.isCompleted : false
+        };
+
+        if (initialStatus.isEditing && initialStatus.selectedTask) {
+            initialStatus = editTask(initialStatus, newTask);
+        } else {
+            initialStatus = addTask(initialStatus, newTask);
+        }
+
+        updateUI();
+        taskTextArea!.value = "";
+    };
+
+    cancelAddTaskBt!.onclick = () => {
+        tooggleVisibilityForm(addTaskForm!);
+    };
+
+    cleanTextAreaBt!.onclick = () => {
+        cleanFields(taskTextArea!);
     };
 
     if (ulTaskElement) {
         ulTaskElement.innerHTML = "";
     }
 
-    inicialStatus.tasks.forEach(task => {
+    initialStatus.tasks.forEach(task => {
         const liTaskElement = document.createElement('li');
         liTaskElement.classList.add('app__section-task-list-item');
 
@@ -84,18 +164,65 @@ const updateUI = () => {
 
         if (task.isCompleted) {
             editBt.setAttribute('disabled', 'true');
-
             liTaskElement.classList.add('app__section-task-list-item-complete');
         }
 
         liTaskElement.appendChild(svgIcon);
-
         liTaskElement.appendChild(descriptionParagraph);
-
         liTaskElement.appendChild(editBt);
+
+        liTaskElement.addEventListener("click", () => {
+            initialStatus = selectTask(initialStatus, task);
+
+            tooggleVisibilityForm(addTaskForm!);
+
+            selectedTaskLabel!.innerHTML = `#Em andamento: ${task.description}`;
+
+            taskTextArea!.value = task.description;
+
+            updateUI();
+        });
+
+        if (task === initialStatus.selectedTask) {
+            liTaskElement.classList.add('app__section-task-list-item-active');
+        }
+
+        svgIcon.addEventListener("click", () => {
+            task.isCompleted = !task.isCompleted;
+
+            updateUI();
+        });
+
+        editBt.onclick = (evt) => {
+            evt.stopPropagation();
+
+            initialStatus = {
+                ...initialStatus,
+                isEditing: true,
+                selectedTask: task
+            };
+
+            tooggleVisibilityForm(addTaskForm!);
+
+            selectedTaskLabel!.innerHTML = `#Em andamento: ${task.description}`;
+
+            taskTextArea!.value = task.description;
+
+            updateUI();
+        };
 
         ulTaskElement?.appendChild(liTaskElement);
     });
 };
 
+document.addEventListener("TarefaFinalizada", () => {
+    if (initialStatus.selectedTask) {
+        initialStatus.selectedTask.isCompleted = true;
+
+        updateUI();
+    }
+});
+
 updateUI();
+
+
