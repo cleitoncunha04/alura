@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+.text-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 5px 10px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #c8c8c8;
+    background-color: #FFF;
+    margin: 24px 0;
+    box-sizing: border-box;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    ;
+}
+
+.text-field__icon {
+    border-right: 2px solid black;
+    padding-right: 5px;
+    font-size: 24px;
+}
+
+.text-field__input {
+    border: none;
+    padding: 10px;
+    width: calc(100% - 44px);
+    font-weight: 600;
+    background-color: transparent;
+}
+
+.text-field__input::placeholder {
+    color: #000;
+}
+
+.text-field__input:focus {
+    outline: none;
+}
+
+.text-field:focus-within {
+    border-color: black; /* Exemplo de mudança na cor da borda */
+    box-shadow: 0 0 10px black; /* Exemplo de mudança no box-shadow */
+    background-color: #f0f8ff; /* Exemplo de mudança no background */
+}
+
+
+@media screen and (min-width: 640px) {
+    .text-field {
+        padding: 10px;
+    }
+
+    .text-field__icon {
+        font-size: 32px;
+        padding-right: 10px;
+    }
+
+    .text-field__input {
+        font-size: 1.25rem;
+        width: calc(100% - 52px);
+    }
+}
+
+@media screen and (min-width: 1008px) {
+    .text-field {
+        border: 3px solid black;
+        border-radius: 20px;
+    }
+
+    .text-field__icon {
+        font-size: 43px;
+        border-right: 3px solid black;
+    }
+
+    .text-field__input {
+        width: calc(100% - 63px);
+    }
+}
+
