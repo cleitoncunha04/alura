@@ -1,0 +1,45 @@
+.cont {
+    margin: 16px 0;
+}
+
+.container__title {
+    display: block;
+    font-weight: 600;
+}
+
+.container__drop-down {
+    margin-top: 8px;
+    width: 100%;
+    padding: 15px;
+    border: 2px solid black;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px #c8c8c8;
+    background-color: #FFF;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+
+.container__drop-down:focus {
+    outline: grey;
+    border-color: black;
+    box-shadow: 0 0 10px black;
+    background-color: #f0f8ff;
+}
+
+@media screen and (min-width: 640px) {
+    .container__title {
+        font-size: 1.25rem;
+    }
+
+    .container__drop-down {
+        padding: 20px;
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 1008px) {
+    .container__drop-down {
+        border-radius: 20px;
+        border: 3px solid black;
+    }
+}

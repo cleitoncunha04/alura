@@ -1,0 +1,41 @@
+.button {
+    border: 3px solid #3853f4;
+    padding: 20px;
+    width: auto;
+    background: #6278F7;
+    color: white;
+    font-weight: 600;
+    align-self: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 2px 5px 10px #c8c8c8;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+button:hover {
+    animation: ease-in-out;
+    border: 3px solid #6278F7;
+    background: #3853f4;
+    transform: scale(0.9);
+    gap: 5px;
+}
+
+@media screen and (min-width: 640px) {
+    .button {
+        font-size: 1.25rem;
+        align-self: flex-end;
+        margin: 16px 0;
+    }
+}
+
+@media screen and (min-width: 1008px) {
+    .button {
+        font-size: 1.5rem;
+        border-radius: 20px;
+    }
+}

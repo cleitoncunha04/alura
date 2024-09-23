@@ -1,20 +1,20 @@
 import './TextField.css';
+import Icon from "../Icon";
 
-const Index = (props) => {
+const TextField = (props) => {
     return (
         <div className="text-field">
-            <span className="material-symbols-outlined text-field__icon">
-                {props.span}
-            </span>
+            <Icon iconName={props.span} className="text-field__icon"/>
 
             <input
                 type="text"
                 placeholder={`${props.placeholder}...`}
                 className="text-field__input"
+                required={props.required}
             />
         </div>
     );
 };
 
 
-export default Index;
+export default TextField;
