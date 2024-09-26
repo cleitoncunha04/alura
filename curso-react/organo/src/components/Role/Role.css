@@ -1,0 +1,49 @@
+.role {
+    text-align: center;
+    padding: 16px;
+}
+
+.role__title {
+    font-size: 1.5rem;
+    display: inline-block;
+    margin: 8px;
+}
+
+.role__title-underline {
+    width: 20px;
+    height: 3px;
+    margin: auto;
+}
+
+.role__content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 640px) {
+    .role {
+        padding: 24px;
+    }
+
+    .role__title {
+        font-size: 2rem;
+    }
+
+    .role__title-underline {
+        width: 25px;
+        height: 4px;
+    }
+}
+
+@media screen and (min-width: 1008px) {
+    .role {
+        padding: 32px;
+    }
+
+    .role__title-underline {
+        width: 30px;
+        height: 5px;
+    }
+}

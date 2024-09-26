@@ -6,14 +6,6 @@ import Icon from "../Icon";
 import {useState} from "react";
 
 const Form = (props) => {
-    const roles = [
-        'Controllers',
-        'Duelist',
-        'Flex',
-        'Initiator',
-        'Sentinel'
-    ];
-
     let agents = [
         "Brimstone",
         "Phoenix",
@@ -48,15 +40,24 @@ const Form = (props) => {
     const [role, setRole] = useState('');
     const [main, setMain] = useState('');
 
+    const cleanFieldsForm = () => {
+        setNickname('');
+        setImage('');
+        setRole('');
+        setMain('');
+    };
+
     const onSave = (evt) => {
         evt.preventDefault();
 
-        props.onRegiteredPlayer({
+        props.onRegisteredPlayer({
            nickname,
            image,
            role,
            main
-        });
+        }); // estou chamando a função onRegisteredPlayer, passando um objeto como parâmetro
+
+        cleanFieldsForm();
     };
 
     return (
@@ -81,7 +82,7 @@ const Form = (props) => {
                 <Dropdown
                     required={true}
                     label="Select your role: "
-                    items={roles}
+                    items={props.rolesName}
                     value={role}
                     onChange={role => setRole(role)}
                 />

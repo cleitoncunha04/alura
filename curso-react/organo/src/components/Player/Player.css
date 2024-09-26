@@ -1,0 +1,74 @@
+.container__player {
+    margin-top: 20px;
+    width: 150px;
+    height: 170px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    background: white;
+}
+
+.container__player__header {
+    position: relative;
+    height: 50%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+    padding-top: 60px;
+}
+
+.container__player__header-image {
+    position: absolute;
+    bottom: -40px;
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container__player__footer {
+    padding-top: 30px;
+}
+
+.container__player__footer-nickname {
+    color: #6278F7;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+}
+
+.container__player__footer-main {
+    font-weight: 400;
+    font-size: 0.7rem;
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 640px) {
+    .container__player {
+        width: 200px;
+        height: 200px;
+    }
+
+    .container__player__footer-nickname {
+        font-size: 1rem;
+    }
+
+    .container__player__footer-main {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 1008px) {
+    .container__player {
+        width: 250px;
+        height: 250px;
+    }
+
+    .container__player__footer-nickname {
+        font-size: 1.25rem;
+    }
+
+    .container__player__footer-main {
+        font-size: 1rem;
+    }
+}
