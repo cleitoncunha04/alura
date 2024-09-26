@@ -11,6 +11,7 @@ const Dropdown = (props) => {
                 value={props.value}
                 onChange={evt => props.onChange(evt.target.value)}
             >
+                <option value="">Select...</option>
                 {props.items.map(item => <option key={item}>{item}</option>)}
             </select>
         </div>
