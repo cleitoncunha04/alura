@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
 .container {
     display: flex;
     justify-content: center;
@@ -13,6 +15,10 @@
     border: 3px solid black;
     display: flex;
     flex-flow: column;
+}
+
+.container__form-title {
+    font-family: 'Prata', sans-serif;
 }
 
 @media screen and (min-width: 640px) {

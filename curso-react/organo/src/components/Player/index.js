@@ -1,8 +1,19 @@
 import './Player.css';
+import Icon from "../Icon";
+import { AiFillCloseCircle } from "react-icons/ai";
 
-const Player = ({ primaryColor, nickname, image, main }) => {
+
+const Player = ({ onDelete, primaryColor, nickname, image, main }) => {
     return (
         <div className="container__player">
+            {/*<div className='container__delete-player'>
+                <button className='container__delete-player__button' onClick={onDelete}>
+                    <Icon iconName='close'/>
+                </button>
+            </div>*/}
+
+            <AiFillCloseCircle size={25} className='container__delete-player' onClick={onDelete}/>
+
             <div className="container__player__header" style={{backgroundColor: primaryColor}}>
                 <img className="container__player__header-image"
                      src={image}

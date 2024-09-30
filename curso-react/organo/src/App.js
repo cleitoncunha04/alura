@@ -44,6 +44,10 @@ function App() {
         ]); // não posso fazer o players.push, ent tive q fazer assim
     };
 
+    const deletePlayer = () => {
+        console.log('deleting');
+    };
+
     return (
         <div className="App">
             <Banner/>
@@ -54,7 +58,9 @@ function App() {
                     primaryColor={role.primaryColor}
                     secondColor={role.secondColor}
                     players={players.filter(player => player.role === role.name)}
-            />)}
+                    onDelete={deletePlayer}
+                />
+            )}
             <Footer />
         </div>
     );

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Prata&display=swap');
+
 .role {
     text-align: center;
     padding: 16px;
@@ -7,6 +9,7 @@
     font-size: 1.5rem;
     display: inline-block;
     margin: 8px;
+    font-family: 'Prata', sans-serif;
 }
 
 .role__title-underline {
