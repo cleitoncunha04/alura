@@ -1,64 +1,73 @@
 import 'dart:io';
 
-validateInput(param) {
+double validateInput(double param) {
   String? input = stdin.readLineSync();
 
-  if (input != null && input != "") {
-    if (param.runtimeType == double) {
-      return param = double.parse(input);
-    } else {
-      return param = input;
-    }
+  if (input != null && input.isNotEmpty) {
+    return double.parse(input);
   } else {
-    if (param.runtimeType == double) {
-      return 0.0;
-    } else {
-      return '';
-    }
+    return 0.0;
   }
 }
 
 String getOption() {
   print('Select an option:\n1- Add grade\n2- List grades\n3- Quit');
-
-  String option = '';
-
-  return validateInput(option);
+  String? option = stdin.readLineSync();
+  return option ?? '';
 }
 
-addGrade(List<double> grades) {
-  double grade = 0.0;
-
+void addGrade(List<double> grades) {
   print('Insert a grade:');
+  double grade = validateInput(0.0);
 
-  grade = validateInput(grade);
+  if (grade > 10) {
+    print('Insert a valid grade...');
+
+    addGrade(grades);
+
+    return;
+  }
 
   grades.add(grade);
 }
 
-listGrades(List<double> grades) {
-  for (var grade in grades.asMap().entries) {
-    print('Grade ${grade.key + 1}: ${grade.value}');
+void listGrades(List<double> grades) {
+  if (grades.isEmpty) {
+    print('No grades available.');
+  } else {
+    for (var grade in grades.asMap().entries) {
+      print('Grade ${grade.key + 1}: ${grade.value}');
+    }
   }
 }
 
-void main() {
-  List<double> grades = [];
+void showAsciiArt() {
+  print(" ______  ______  ______  _____   ______  ______    ");
+  print("/\\  ___\\/\\  == \\/\\  __ \\/\\  __-./\\  ___\\/\\  ___\\   ");
+  print("\\ \\ \\__ \\ \\  __<\\ \\  __ \\ \\ \\/\\ \\ \\  __\\\\ \\___  \\  ");
+  print(" \\ \\_____\\ \\_\\ \\_\\ \\_\\ \\_\\ \\____-\\ \\_____\\/\\_____\\ ");
+  print("  \\/_____/\\/_/ /_/\\/_/\\/_/\\/____/ \\/_____/\\/_____/ ");
+  print("                                                   ");
+}
 
-  List<String> options = <String>['1', '2', '3'];
-
-  String isContinue = '';
+void showMenu(List<String> options, List<double> grades) {
+  String option;
 
   do {
-    String option = '';
+    print('');
 
-    do {
-      option = getOption();
+    showAsciiArt();
 
-      if (!options.contains(option)) {
-        print('Select a valid option...');
-      }
-    } while (!options.contains(option));
+    print('');
+
+    option = getOption();
+
+    print('');
+
+    if (!options.contains(option)) {
+      print('Select a valid option...');
+      continue; // Retorna ao início do loop se a opção não for válida
+    }
 
     switch (option) {
       case '1':
@@ -73,9 +82,12 @@ void main() {
       default:
         print('Select a valid option...');
     }
+  } while (true);
+}
 
-    print('Should continue? (Y/N)');
+void main() {
+  List<double> grades = [];
+  List<String> options = <String>['1', '2', '3'];
 
-    isContinue = stdin.readLineSync()!.toUpperCase();
-  } while (isContinue != 'N');
+  showMenu(options, grades);
 }
