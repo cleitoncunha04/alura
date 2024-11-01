@@ -17,16 +17,19 @@ double division(double n1, double n2) {
 }
 
 String getCalc() {
-  print(
-      'Select an option:\n1- Sum\n2- Subtraction\n3- Multiplication\n4- Division\n');
+  String operation = '';
 
-  print('Option:');
+  List<String> operations = <String>['+', '-', '*', '/'];
 
-  String option = '';
+  print('Select an option ${operations.toString()}:');
 
-  option = validateInput(option);
+  operation = validateInput(operation);
 
-  return option;
+  if (operations.contains(operation)) {
+    return operation;
+  }
+
+  return '';
 }
 
 validateInput(var param) {
@@ -35,7 +38,7 @@ validateInput(var param) {
   if (input != null && input != "") {
     if (param.runtimeType == double) {
       return param = double.parse(input);
-    } else  {
+    } else {
       return param = input;
     }
   } else {
@@ -53,8 +56,6 @@ void main() {
   do {
     stdout.write('\x1B[2J\x1B[0;0H');
 
-    String option = getCalc();
-
     print('Enter the first number:');
     double n1 = 0;
     n1 = validateInput(n1);
@@ -63,24 +64,36 @@ void main() {
     double n2 = 0;
     n2 = validateInput(n2);
 
-    print('Result: ');
+    String option = '';
+
+    do {
+      option = getCalc();
+
+      if (option.isEmpty) {
+        print('Invalid operation...\n');
+      }
+    } while (option.isEmpty);
 
     switch (option) {
-      case '1':
+      case '+':
         print(sum(n1, n2));
         break;
-      case '2':
+      case '-':
         print(subtraction(n1, n2));
         break;
-      case '3':
+      case '*':
         print(multiplication(n1, n2));
         break;
-      case '4':
+      case '/':
         print(division(n1, n2));
         break;
       default:
         print('Please, select a valid option...');
         break;
+    }
+
+    if (option.isNotEmpty) {
+      print('Result: ');
     }
 
     print('Want to close the program? (Y/N)');
