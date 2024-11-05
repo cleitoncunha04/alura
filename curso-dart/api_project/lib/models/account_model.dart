@@ -1,84 +1,53 @@
-import 'dart:convert';
 
-class AccountModel {
-  final String _id;
-  final String _name;
-  final String _lastName;
-  final double _balance;
+class Account {
+  String id;
+  String name;
+  String lastName;
+  double balance;
+  String? accountType;
 
-  AccountModel.constructor(
-      {required String id,
-      required String name,
-      required String lastName,
-      required double balance})
-      : _id = id,
-        _name = name,
-        _lastName = lastName,
-        _balance = balance;
+  Account({
+    required this.id,
+    required this.name,
+    required this.lastName,
+    required this.balance,
+    required this.accountType,
+  });
 
-  // uso o factory para converter meu construtor ".fromMap()" no meu construtor .constructor()
-  factory AccountModel.fromMap(Map<String, dynamic> accountMap) {
-    return AccountModel.constructor(
-      id: accountMap['id'],
-      name: accountMap['name'],
-      lastName: accountMap['lastName'],
-      balance: (accountMap['balance'] is String)
-          ? double.tryParse(accountMap['balance']) ?? 0.0
-          : accountMap['balance'] as double? ?? 0.0,
+  factory Account.fromMap(Map<String, dynamic> map) {
+    return Account(
+      id: map['id'] as String,
+      name: map['name'] as String,
+      lastName: map['lastName'] as String,
+      balance: map['balance'] as double,
+      accountType:
+          (map['accountType'] != null) ? map['accountType'] as String : null,
     );
   }
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': _id,
-      'name': _name,
-      'lastName': _lastName,
-      'balance': _balance
+      'id': id,
+      'name': name,
+      'lastName': lastName,
+      'balance': balance,
+      'accountType': accountType,
     };
   }
 
-  String toJson() => json.encode(toMap());
-
-  factory AccountModel.fromJson(String source) =>
-      AccountModel.fromMap(json.decode(source));
-
-  AccountModel copyWith({
+  Account copyWith({
     String? id,
     String? name,
     String? lastName,
     double? balance,
+    String? accountType,
   }) {
-    return AccountModel.constructor(
-      id: id ?? _id,
-      name: name ?? _name,
-      lastName: lastName ?? _lastName,
-      balance: balance ?? _balance,
+    return Account(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      lastName: lastName ?? this.lastName,
+      balance: balance ?? this.balance,
+      accountType: accountType ?? this.accountType,
     );
   }
-
-  @override
-  String toString() {
-    return 'Account: $_id: $_name $_lastName, balance: $_balance\n';
-  }
-
-  @override
-  int get hashCode {
-    return _id.hashCode ^
-        _name.hashCode ^
-        _lastName.hashCode ^
-        _balance.hashCode;
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is AccountModel &&
-        other._id == _id &&
-        other._name == _name &&
-        other._lastName == _lastName &&
-        other._balance == _balance;
-  }
-
-  String get id => _id;
 }

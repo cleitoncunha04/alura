@@ -11,7 +11,7 @@ class AccountService {
 
   Stream<String> get streamInfos => _streamController.stream;
 
-  Future<List<AccountModel>> getAll() async {
+  Future<List<Account>> getAll() async {
     Response response = await get(Uri.parse(_url));
 
     _streamController.add('${DateTime.now()} | GET: ${response.statusCode}');
@@ -21,12 +21,12 @@ class AccountService {
     List<dynamic> listDynamic =
         json.decode(mapResponse['files']['accounts.json']['content']);
 
-    List<AccountModel> accounts = [];
+    List<Account> accounts = [];
 
     for (dynamic dyn in listDynamic) {
       Map<String, dynamic> mapAccount = dyn as Map<String, dynamic>;
 
-      AccountModel account = AccountModel.fromMap(mapAccount);
+      Account account = Account.fromMap(mapAccount);
 
       accounts.add(account);
     }
@@ -34,24 +34,18 @@ class AccountService {
     return accounts;
   }
 
-  Future<List<AccountModel>> getById(String id) async {
-    List<AccountModel> accounts = await getAll();
-    
-    return accounts.where((account) => account.id == id).toList();
+  addAccount(Account account) async {
+    List<Account> listAccounts = await getAll();
+    listAccounts.add(account);
+    save(listAccounts, accountName: account.name);
   }
 
-  Future<Response> add(AccountModel account) async {
-    List<AccountModel> accounts = await getAll();
-
-    accounts.add(account);
-
-    List<Map<String, dynamic>> contents = [];
-
-    for (AccountModel account in accounts) {
-      contents.add(account.toMap());
+  save(List<Account> listAccounts, {String accountName = ""}) async {
+    List<Map<String, dynamic>> listContent = [];
+    for (Account account in listAccounts) {
+      listContent.add(account.toMap());
     }
-
-    String content = json.encode(contents);
+    String content = json.encode(listContent);
 
     Response response = await post(Uri.parse(_url),
         headers: {
@@ -64,9 +58,9 @@ class AccountService {
             'accounts.json': {'content': content}
           }
         }));
-    
+
     _streamController.add(
-        '${DateTime.now()} | POST (add): ${account.toString()}, ${response.statusCode}');
+        '${DateTime.now()} | POST (add): ${response.statusCode}');
 
     await Future.delayed(Duration(milliseconds: 100));
 
