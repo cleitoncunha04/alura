@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/components/task_component.dart';
+import 'package:my_project/data/task_inherited.dart';
+import 'package:my_project/screens/form_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -20,9 +22,28 @@ class _InitialScreenState extends State<InitialScreen> {
           size: 24,
           color: Colors.white,
         ),
-        title: const Text(
-          'Tasks list',
-          style: TextStyle(color: Colors.white),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Tasks list',
+              style: TextStyle(color: Colors.white),
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (contextNew) =>  FormScreen(taskContext: context),
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         backgroundColor: Colors.black,
       ),
@@ -30,27 +51,8 @@ class _InitialScreenState extends State<InitialScreen> {
         opacity: opacity,
         duration: const Duration(milliseconds: 500),
         child: ListView(
-          children: const [
-            Task(
-              taskName: 'Remember Basis of Flutter',
-              imagePath:
-                  'assets/images/dash-search.png',
-              difficulty: 3,
-            ),
-            Task(
-              taskName: 'Learn State Managment in Flutter',
-              imagePath:
-                  'assets/images/dash-search.png',
-              difficulty: 5,
-            ),
-            Task(
-              taskName: 'Learn Animations in Flutter',
-              imagePath:
-                  'assets/images/dash-search.png',
-              difficulty: 1,
-            ),
-            SizedBox(height: 80,),
-          ],
+          padding: const EdgeInsets.only(top: 8, bottom: 70,), 
+          children: TaskInherited.of(context)!.tasks,
         ),
       ),
       floatingActionButton: FloatingActionButton(

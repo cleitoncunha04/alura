@@ -6,19 +6,23 @@ class Task extends StatefulWidget {
   final String imagePath;
   final int difficulty;
 
-  const Task({
+  Task({
     required this.taskName,
     required this.imagePath,
     required this.difficulty,
     super.key,
   });
 
+  int level = 0;
+
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int level = 0;
+  bool assetOrNetwork() {
+    return widget.imagePath.contains('http') ? false : true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +63,15 @@ class _TaskState extends State<Task> {
                               topLeft: Radius.circular(10),
                               bottomLeft: Radius.circular(10),
                             ),
-                            child: Image.asset(
-                              widget.imagePath,
-                              fit: BoxFit.cover,
-                            ),
+                            child: assetOrNetwork()
+                                ? Image.asset(
+                                    widget.imagePath,
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.network(
+                                    widget.imagePath,
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                         Column(
@@ -87,7 +96,7 @@ class _TaskState extends State<Task> {
                           width: 52,
                           height: 52,
                           child: ElevatedButton(
-                            onPressed: () => setState(() => level++),
+                            onPressed: () => setState(() => widget.level++),
                             style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
                                 backgroundColor: Colors.black,
@@ -131,16 +140,16 @@ class _TaskState extends State<Task> {
                           backgroundColor: Colors.grey[700],
                           color: Colors.white,
                           value: (widget.difficulty > 0)
-                              ? (level / widget.difficulty) / 10
+                              ? (widget.level / widget.difficulty) / 10
                               : 1,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: Text(
-                          level > 0 && level < 10
-                              ? 'Level: 0$level'
-                              : 'Level: $level',
+                          widget.level > 0 && widget.level < 10
+                              ? 'Level: 0${widget.level}'
+                              : 'Level: ${widget.level}',
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
