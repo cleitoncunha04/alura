@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/components/custom_form_textfield_component.dart';
+import 'package:my_project/components/task_component.dart';
 import 'package:my_project/data/task_inherited.dart';
+import 'package:my_project/data/task_repository.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({
@@ -51,8 +52,8 @@ class _FormScreenState extends State<FormScreen> {
         body: Center(
           child: SingleChildScrollView(
             child: Container(
-              height: 550,
-              width: 470,
+              height: 680,
+              width: 350,
               decoration: BoxDecoration(
                 color: Colors.black12,
                 border: Border.all(
@@ -96,7 +97,7 @@ class _FormScreenState extends State<FormScreen> {
                           color: Colors.black,
                         ),
                         label: Text(
-                          'Task name',
+                          'Task name...',
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -259,8 +260,13 @@ class _FormScreenState extends State<FormScreen> {
                           )),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          print(
-                              '${nameController.text}, ${difficultyController.text}, ${imageController.text}');
+                          TaskRepository().save(
+                            Task(
+                              taskName: nameController.text,
+                              imagePath: imageController.text,
+                              difficulty: int.parse(difficultyController.text),
+                            ),
+                          );
 
                           TaskInherited.of(widget.taskContext)!.newTask(
                             nameController.text,
@@ -274,7 +280,7 @@ class _FormScreenState extends State<FormScreen> {
                             ),
                           );
 
-                          Navigator.pop(context);
+                          Navigator.pop(context, true);
                         }
                       },
                       child: const Text(

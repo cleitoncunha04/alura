@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_project/components/difficult_component.dart';
+import 'package:my_project/data/task_repository.dart';
 
 class Task extends StatefulWidget {
   final String taskName;
@@ -50,7 +51,8 @@ class _TaskState extends State<Task> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
-                          width: 120,
+                          width: 90,
+                          height: 100,
                           decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
@@ -66,11 +68,11 @@ class _TaskState extends State<Task> {
                             child: assetOrNetwork()
                                 ? Image.asset(
                                     widget.imagePath,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fitWidth,
                                   )
                                 : Image.network(
                                     widget.imagePath,
-                                    fit: BoxFit.cover,
+                                    fit: BoxFit.fitHeight,
                                   ),
                           ),
                         ),
@@ -79,7 +81,7 @@ class _TaskState extends State<Task> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              width: 200,
+                              width: 150,
                               child: Text(
                                 widget.taskName,
                                 style: const TextStyle(
@@ -96,6 +98,60 @@ class _TaskState extends State<Task> {
                           width: 52,
                           height: 52,
                           child: ElevatedButton(
+                            onLongPress: () async {
+                              // Exibe o AlertDialog quando o botão for pressionado
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text(
+                                      'Should remove this task?',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5)),
+                                    actions: [
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        onPressed: () async {
+                                          await TaskRepository()
+                                              .remove(widget.taskName);
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          'YES',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          'NO',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              );
+                            },
                             onPressed: () => setState(() => widget.level++),
                             style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -135,7 +191,7 @@ class _TaskState extends State<Task> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width: 350,
+                        width: 250,
                         child: LinearProgressIndicator(
                           backgroundColor: Colors.grey[700],
                           color: Colors.white,
