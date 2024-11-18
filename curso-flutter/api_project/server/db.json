@@ -1,0 +1,66 @@
+{
+  "learnhttp": [
+    {
+      "id": "7388",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "7d54",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "7846",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "a436",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "c814",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "9af1",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "b042",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "65f1",
+      "content": "Presunto e queijo..."
+    },
+    {
+      "id": "1040",
+      "content": "Presunto e queijo..."
+    }
+  ],
+  "journals": [
+    {
+      "id": "ef865e80-a5e1-11ef-9bb3-136fabd944ff",
+      "content": "Comi refrigerante!",
+      "created_at": "2024-11-13 16:18:41.625677",
+      "updated_at": "2024-11-13 16:18:41.625677"
+    },
+    {
+      "id": "a6e6a4e0-a5e2-11ef-9bb3-136fabd944ff",
+      "content": "Sardinha enlatada",
+      "created_at": "2024-11-15 16:18:41.625677",
+      "updated_at": "2024-11-15 16:18:41.625677"
+    },
+    {
+      "id": "a6dc80d0-a5e4-11ef-8eea-3baae77488a0",
+      "content": "Coxinha queimada",
+      "created_at": "2024-11-09 16:38:10.514756",
+      "updated_at": "2024-11-09 16:38:10.514756"
+    },
+    {
+      "id": "ea6535d0-a5e5-11ef-9251-ddeda7c9caa2",
+      "content": "Teare",
+      "created_at": "2024-11-10 16:47:05.232952",
+      "updated_at": "2024-11-10 16:47:05.232952"
+    }
+  ]
+}
