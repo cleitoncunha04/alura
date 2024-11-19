@@ -1,4 +1,16 @@
 {
+  "users": [
+    {
+      "email": "cleitinho04@gmail.com",
+      "password": "$2a$10$UAR74acUx9hRbe67bcszl.0kobssGArztxtX1tHndZXLk6iA78HEi",
+      "id": 1
+    },
+    {
+      "email": "carlitos@gmail.com",
+      "password": "$2a$10$06aTzGpB4y5XMylTtfizlOVTwyyNZeegY4y4dJNf1wdsonVk7rU0i",
+      "id": 2
+    }
+  ],
   "learnhttp": [
     {
       "id": "7388",
@@ -39,28 +51,10 @@
   ],
   "journals": [
     {
-      "id": "ef865e80-a5e1-11ef-9bb3-136fabd944ff",
-      "content": "Comi refrigerante!",
-      "created_at": "2024-11-13 16:18:41.625677",
-      "updated_at": "2024-11-13 16:18:41.625677"
-    },
-    {
-      "id": "a6e6a4e0-a5e2-11ef-9bb3-136fabd944ff",
-      "content": "Sardinha enlatada",
-      "created_at": "2024-11-15 16:18:41.625677",
-      "updated_at": "2024-11-15 16:18:41.625677"
-    },
-    {
-      "id": "a6dc80d0-a5e4-11ef-8eea-3baae77488a0",
-      "content": "Coxinha queimada",
-      "created_at": "2024-11-09 16:38:10.514756",
-      "updated_at": "2024-11-09 16:38:10.514756"
-    },
-    {
-      "id": "ea6535d0-a5e5-11ef-9251-ddeda7c9caa2",
-      "content": "Teare",
-      "created_at": "2024-11-10 16:47:05.232952",
-      "updated_at": "2024-11-10 16:47:05.232952"
+      "id": "c31b4130-a681-11ef-863f-152cea15c2c2",
+      "content": "Calma, calabreso",
+      "created_at": "2024-11-10 11:16:07.372162",
+      "updated_at": "2024-11-10 11:16:07.372162"
     }
   ]
 }

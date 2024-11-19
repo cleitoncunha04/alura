@@ -41,4 +41,22 @@ class JournalService {
 
     return response.statusCode == 201;
   }
+
+  Future<bool> put(String id, Journal journal) async {
+    http.Response response = await client.put(
+      Uri.parse('${getUrl()}$id'), // Passo a URL com o id para fazer o PUT
+      headers: {'Content-type': 'application/json'},
+      body: json.encode(journal.toMap()),
+    );
+
+    return response.statusCode == 200;
+  }
+
+  Future<bool> delete(String id) async {
+    http.Response response = await client.delete(
+      Uri.parse('${getUrl()}$id'), // Passo a URL com o id para fazer o DELETE
+    );
+
+    return response.statusCode == 200;
+  }
 }

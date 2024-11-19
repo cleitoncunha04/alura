@@ -37,10 +37,10 @@ class WeekDay {
         long = "Sábado";
         break;
     }
+  }
 
-    @override
-    String toString() {
-      return '${long.toLowerCase()}, ${date.day}/${date.month}/${date.year}';
-    }
+  @override
+  String toString() {
+    return '${long.toLowerCase()}, ${date.day}/${date.month}/${date.year}';
   }
 }

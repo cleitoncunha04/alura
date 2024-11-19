@@ -1,3 +1,7 @@
+import 'package:api_project/models/custom_snackbar_enum.dart';
+import 'package:api_project/screens/common/confirmation_dialog.dart';
+import 'package:api_project/screens/common/custom_snackbar.dart';
+import 'package:api_project/services/journal_service.dart';
 import 'package:flutter/material.dart';
 import 'package:api_project/helpers/weekday.dart';
 import 'package:api_project/models/journal.dart';
@@ -14,22 +18,42 @@ class JournalCard extends StatelessWidget {
     required this.refreshFunction,
   });
 
-  callAddJournalScreen(BuildContext context) {
+  callAddJournalScreen(BuildContext context, {Journal? journal}) {
+    Journal innerJournal = Journal(
+      id: const Uuid().v1(),
+      content: '',
+      createdAt: showedDate,
+      updatedAt: showedDate,
+    );
+
+    Map<String, dynamic> map = {};
+
+    if (journal != null) {
+      innerJournal = journal;
+
+      map['is_editing'] = true;
+    } else {
+      map['is_editing'] = false;
+    }
+
+    map['journal'] = innerJournal;
+
     Navigator.pushNamed(
       context,
       'add-journal',
-      arguments: Journal(
-        id: const Uuid().v1(),
-        content: '',
-        createdAt: showedDate,
-        updatedAt: showedDate,
-      ),
+      arguments: map,
     ).then((result) {
       if (result != null && result == true) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Journal added successfully...'),
-          ),
+        showCustomSnackBar(
+          context: context,
+          type: CustomSnackBarTypes.success,
+          content: 'Journal saved successfully...',
+        );
+      } else {
+        showCustomSnackBar(
+          context: context,
+          type: CustomSnackBarTypes.error,
+          content: 'Error on adding Journal...',
         );
       }
 
@@ -37,11 +61,44 @@ class JournalCard extends StatelessWidget {
     });
   }
 
+  removeJournal(BuildContext context) {
+    if (journal != null) {
+      showConfirmationDialog(context,
+              content:
+                  'Do you really wanna remove Journal of this day (${WeekDay(journal!.createdAt)})?')
+          .then((value) {
+        if (value) {
+          JournalService journalService = JournalService();
+
+          journalService.delete(journal!.id).then(
+            (value) {
+              if (value) {
+                showCustomSnackBar(
+                  context: context,
+                  type: CustomSnackBarTypes.success,
+                  content: 'Journal removed successfully...',
+                );
+
+                refreshFunction();
+              } else {
+                showCustomSnackBar(
+                  context: context,
+                  type: CustomSnackBarTypes.error,
+                  content: 'Error on removing Journal...',
+                );
+              }
+            },
+          );
+        }
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     if (journal != null) {
       return InkWell(
-        onTap: () {},
+        onTap: () => callAddJournalScreen(context, journal: journal),
         child: Container(
           height: 115,
           margin: const EdgeInsets.only(
@@ -108,6 +165,16 @@ class JournalCard extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 3,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  onPressed: () => removeJournal(context),
+                  icon: const Icon(
+                    Icons.delete,
+                    size: 36,
                   ),
                 ),
               ),
