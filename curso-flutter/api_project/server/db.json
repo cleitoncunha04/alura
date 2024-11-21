@@ -9,6 +9,16 @@
       "email": "carlitos@gmail.com",
       "password": "$2a$10$06aTzGpB4y5XMylTtfizlOVTwyyNZeegY4y4dJNf1wdsonVk7rU0i",
       "id": 2
+    },
+    {
+      "email": "teare@gmail.com",
+      "password": "$2a$10$X2JbqkyJKR2ppBM6rUOd6.xSW3i/BeArDfPWIUd4H17hTZzeEVqKq",
+      "id": 3
+    },
+    {
+      "email": "teste01@gmail.com",
+      "password": "$2a$10$3t3dmisjcpwvKS8RWFVLROLjEuRlFiXc8JZDmQ4QEsEbpNPpOkhYK",
+      "id": 4
     }
   ],
   "learnhttp": [
@@ -51,10 +61,25 @@
   ],
   "journals": [
     {
-      "id": "c31b4130-a681-11ef-863f-152cea15c2c2",
-      "content": "Calma, calabreso",
-      "created_at": "2024-11-10 11:16:07.372162",
-      "updated_at": "2024-11-10 11:16:07.372162"
+      "id": "dd6ec6f0-a81c-11ef-acdd-c76fd33772e3",
+      "content": "ffghhhh",
+      "created_at": "2024-11-13 12:24:56.917283",
+      "updated_at": "2024-11-13 12:24:56.917283",
+      "userId": 3
+    },
+    {
+      "id": "53327970-a833-11ef-9dfd-dd4ea6011476",
+      "content": "fggghgaaavbb",
+      "created_at": "2024-11-14 15:06:21.066525",
+      "updated_at": "2024-11-21 17:08:16.607263",
+      "userId": 4
+    },
+    {
+      "id": "55c127b0-a840-11ef-822b-27b336ae0533",
+      "content": "coxinha 02",
+      "created_at": "2024-11-15 16:01:47.361803",
+      "updated_at": "2024-11-15 16:01:47.361803",
+      "userId": 4
     }
   ]
 }

@@ -3,20 +3,30 @@ import 'package:api_project/screens/add_journal_screen/add_journal_screen.dart';
 import 'package:api_project/screens/login_screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/home_screen/home_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-  // JournalService journalService = JournalService();
+  bool isLogged = await verifyTokenExists();
 
-  // journalService.post(Journal.empty());
+  runApp(MyApp(isLogged: isLogged));
+}
 
-  // journalService.get();
+Future<bool> verifyTokenExists() async {
+  SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+
+  return await asyncPrefs.getString('accessToken') != null;
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+    required this.isLogged,
+  });
+  final bool isLogged;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
         darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.light,
-        initialRoute: "login",
+        initialRoute: isLogged ? 'home' : 'login',
         routes: {
           "home": (context) => const HomeScreen(),
           'login': (context) => LoginScreen(),

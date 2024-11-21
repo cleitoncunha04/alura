@@ -2,17 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:api_project/models/user.dart';
-import 'package:api_project/services/http_interceptor.dart';
+import 'package:api_project/services/web_client.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_interceptor/http/intercepted_client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  //TODO:
-  static const String url = 'http://192.168.1.143:3000/';
-
-  http.Client client =
-      InterceptedClient.build(interceptors: [LoggerInterceptor()]);
+  String url = WebClient.url;
+  http.Client client = WebClient().client;
 
   Future<bool> signIn(User user) async {
     http.Response response = await client.post(
@@ -39,7 +35,7 @@ class AuthService {
     return true;
   }
 
-  signUp(User user) async {
+  Future<bool> signUp(User user) async {
     http.Response response = await client.post(
       Uri.parse('${url}signup'),
       body: {
@@ -66,11 +62,11 @@ class AuthService {
       email: map['user']['email'],
     );
 
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
 
-    sharedPreferences.setString('accessToken', user.accessToken!);
-    sharedPreferences.setString('email', user.email);
-    sharedPreferences.setInt('id', user.id!);
+    await asyncPrefs.setString('accessToken', user.accessToken!);
+    await asyncPrefs.setString('email', user.email);
+    await asyncPrefs.setInt('id', user.id!);
   }
 }
 

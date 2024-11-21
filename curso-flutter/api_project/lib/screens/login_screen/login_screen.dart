@@ -1,5 +1,7 @@
+import 'package:api_project/models/custom_snackbar_enum.dart';
 import 'package:api_project/models/user.dart';
 import 'package:api_project/screens/common/confirmation_dialog.dart';
+import 'package:api_project/screens/common/custom_snackbar.dart';
 import 'package:api_project/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 
   final TextEditingController _passwordController = TextEditingController();
 
-  AuthService authService = AuthService();
+  final AuthService authService = AuthService();
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -27,15 +29,55 @@ class _LoginScreenState extends State<LoginScreen> {
       );
 
       try {
-        await widget.authService.signIn(user);
+        bool value = await widget.authService
+            .signIn(user); // Esperar a resposta da função assíncrona
+        if (value) {
+          showCustomSnackBar(
+            context: context,
+            type: CustomSnackBarTypes.success,
+            content: 'Successfully logged in...',
+          );
+
+          Future.delayed(
+            const Duration(milliseconds: 1500),
+            () => Navigator.pushReplacementNamed(
+              context,
+              'home',
+            ),
+          );
+        }
       } on UserNotFindedExecption {
         showConfirmationDialog(
           context,
           title: 'User not exists',
           content: 'Should register this user?',
-        ).then((value) async => value != null && value
-            ? await widget.authService.signUp(user)
-            : null);
+        ).then((value) async {
+          if (value != null && value) {
+            bool signUpSuccess = await widget.authService
+                .signUp(user); // Aguardar o retorno do signUp
+            if (signUpSuccess) {
+              showCustomSnackBar(
+                context: context,
+                type: CustomSnackBarTypes.success,
+                content: 'Account created successfully...',
+              );
+
+              Future.delayed(
+                const Duration(milliseconds: 1500),
+                () => Navigator.pushReplacementNamed(
+                  context,
+                  'home',
+                ),
+              );
+            }
+          }
+        });
+      } on Exception catch (e) {
+        showCustomSnackBar(
+          context: context,
+          type: CustomSnackBarTypes.error,
+          content: '${e.toString()}...',
+        );
       }
     }
 

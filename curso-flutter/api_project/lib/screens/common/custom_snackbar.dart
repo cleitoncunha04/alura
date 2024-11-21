@@ -12,7 +12,10 @@ showCustomSnackBar({
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(content),
+            Text(
+              content,
+              overflow: TextOverflow.ellipsis,
+            ),
             const Icon(
               Icons.done,
               color: Colors.white,
@@ -29,7 +32,13 @@ showCustomSnackBar({
         content: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(content),
+            SizedBox(
+              width: 320,
+              child: Text(
+                content,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             const Icon(
               Icons.warning,
               color: Colors.white,

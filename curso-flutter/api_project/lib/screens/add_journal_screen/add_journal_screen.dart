@@ -1,7 +1,13 @@
+import 'dart:io';
+
+import 'package:api_project/helpers/logout.dart';
 import 'package:api_project/helpers/weekday.dart';
+import 'package:api_project/models/custom_snackbar_enum.dart';
 import 'package:api_project/models/journal.dart';
+import 'package:api_project/screens/common/custom_snackbar.dart';
 import 'package:api_project/services/journal_service.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AddJournalScreen extends StatelessWidget {
   final Journal journal;
@@ -15,16 +21,38 @@ class AddJournalScreen extends StatelessWidget {
 
   final TextEditingController _contentController = TextEditingController();
 
-  Future<bool> saveJournal() async {
+  Future<bool> saveJournal(BuildContext context) async {
+    SharedPreferencesAsync asyncPrefs = SharedPreferencesAsync();
+
+    String? token = await asyncPrefs.getString('accessToken');
+
     String content = _contentController.text;
 
     JournalService journalService = JournalService();
 
     journal.content = content;
 
-    return isEditing
-        ? await journalService.put(journal.id, journal)
-        : await journalService.post(journal);
+    try {
+    return isEditing && token != null
+        ? journalService.put(token, journal.id, journal)
+        : journalService.post(token!, journal);
+    } on TokenNotValidException {
+      logout(context);
+    } on HttpException catch (e) {
+      showCustomSnackBar(
+        context: context,
+        type: CustomSnackBarTypes.error,
+        content: '${e.message}...',
+      );
+    } on Exception catch (e) {
+      showCustomSnackBar(
+        context: context,
+        type: CustomSnackBarTypes.error,
+        content: '${e.toString()}...',
+      );
+    }
+
+    return false;
   }
 
   @override
@@ -37,7 +65,7 @@ class AddJournalScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              saveJournal().then(
+              saveJournal(context).then(
                 (value) => Navigator.pop(context, value),
               );
             },
@@ -49,6 +77,9 @@ class AddJournalScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: TextField(
           controller: _contentController,
+          decoration: InputDecoration(
+              border: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Colors.black, width: 3))),
           keyboardType: TextInputType.multiline,
           style: const TextStyle(fontSize: 24),
           expands: true,

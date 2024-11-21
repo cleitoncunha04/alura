@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:api_project/helpers/logout.dart';
 import 'package:api_project/models/custom_snackbar_enum.dart';
 import 'package:api_project/screens/common/confirmation_dialog.dart';
 import 'package:api_project/screens/common/custom_snackbar.dart';
@@ -11,11 +14,16 @@ class JournalCard extends StatelessWidget {
   final Journal? journal;
   final DateTime showedDate;
   final Function refreshFunction;
+  final int userId;
+  final String token;
+
   const JournalCard({
     super.key,
     this.journal,
     required this.showedDate,
     required this.refreshFunction,
+    required this.userId,
+    required this.token,
   });
 
   callAddJournalScreen(BuildContext context, {Journal? journal}) {
@@ -24,6 +32,7 @@ class JournalCard extends StatelessWidget {
       content: '',
       createdAt: showedDate,
       updatedAt: showedDate,
+      userId: userId,
     );
 
     Map<String, dynamic> map = {};
@@ -66,31 +75,48 @@ class JournalCard extends StatelessWidget {
       showConfirmationDialog(context,
               content:
                   'Do you really wanna remove Journal of this day (${WeekDay(journal!.createdAt)})?')
-          .then((value) {
-        if (value) {
-          JournalService journalService = JournalService();
+          .then(
+        (value) {
+          if (value) {
+            JournalService journalService = JournalService();
 
-          journalService.delete(journal!.id).then(
-            (value) {
-              if (value) {
-                showCustomSnackBar(
-                  context: context,
-                  type: CustomSnackBarTypes.success,
-                  content: 'Journal removed successfully...',
-                );
+            journalService.delete(journal!.id, token).then(
+              (value) {
+                if (value) {
+                  showCustomSnackBar(
+                    context: context,
+                    type: CustomSnackBarTypes.success,
+                    content: 'Journal removed successfully...',
+                  );
 
-                refreshFunction();
-              } else {
-                showCustomSnackBar(
-                  context: context,
-                  type: CustomSnackBarTypes.error,
-                  content: 'Error on removing Journal...',
-                );
-              }
-            },
-          );
-        }
-      });
+                  refreshFunction();
+                } else {
+                  showCustomSnackBar(
+                    context: context,
+                    type: CustomSnackBarTypes.error,
+                    content: 'Error on removing Journal...',
+                  );
+                }
+              },
+            ).catchError((error) {
+              logout(context);
+            }, test: (error) => error is TokenNotValidException).catchError(
+                (error) {
+              showCustomSnackBar(
+                context: context,
+                type: CustomSnackBarTypes.error,
+                content: '${error.message}...',
+              );
+            }, test: (error) => error is HttpException).catchError((error) {
+              showCustomSnackBar(
+                context: context,
+                type: CustomSnackBarTypes.error,
+                content: '${error.toString()}...',
+              );
+            }, test: (error) => error is Exception);
+          }
+        },
+      );
     }
   }
 
