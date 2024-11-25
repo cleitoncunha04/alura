@@ -6,17 +6,11 @@ class ContentDivisionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 16,
-      ),
-      child: Container(
-        height: 3,
-        decoration: BoxDecoration(
-          color: ThemeColors.divisionComponentColor,
-          borderRadius: BorderRadius.circular(3),
-        ),
+    return Container(
+      height: 3,
+      decoration: BoxDecoration(
+        color: ThemeColors.divisionComponentColor,
+        borderRadius: BorderRadius.circular(3),
       ),
     );
   }

@@ -22,4 +22,9 @@ class ThemeColors {
   };
 
   static const Color divisionComponentColor = Color.fromRGBO(166, 166, 166, 1);
+  
+  static const Map<String, Color> accountPoints = {
+    'shipping': primaryColor,
+    'streaming': Colors.tealAccent,
+  };
 }
