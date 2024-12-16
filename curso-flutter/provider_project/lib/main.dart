@@ -8,7 +8,10 @@ import 'package:provider_project/models/provider/clients.dart';
 import 'package:provider_project/pages/client_types_page.dart';
 import 'package:provider_project/pages/clients_page.dart';
 
-void main() {
+void main({
+  List<String>? args = const [],
+  Key? providerKey = const Key(''),
+}) {
   runApp(
     MultiProvider(
       providers: [
@@ -42,7 +45,9 @@ void main() {
           create: (_) => SelectedClientType(),
         ),
       ],
-      child: const MyApp(),
+      child: MyApp(
+        key: providerKey,
+      ),
     ),
   );
 }
