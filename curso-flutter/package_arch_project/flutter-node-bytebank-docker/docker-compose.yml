@@ -1,0 +1,29 @@
+version: '3'
+services:
+  bff-mobile:
+    build:
+      context: ./bff-mobile
+    ports:
+      - "3000:3000"
+    links:
+      - auth-service
+      - balance-service
+      - transaction-service
+  auth-service:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+  balance-service:
+    build:
+      context: ./services/balance
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+  transaction-service:
+    build:
+      context: ./services/transaction
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
