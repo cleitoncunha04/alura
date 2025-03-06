@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mvc_project/controllers/book_controller.dart';
 import 'package:mvc_project/models/personal_book_model.dart';
 import 'package:mvc_project/screens/book_details.dart';
@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
 // Filled Home widget
 // ignore: must_be_immutable
 class _FilledHome extends StatefulWidget {
-   _FilledHome({
+  _FilledHome({
     required this.listPersonalBook,
     required this.bookController,
   });
@@ -112,7 +112,8 @@ class _FilledHomeState extends State<_FilledHome> {
                         ),
                       ),
                     ).then((value) async {
-                      widget.listPersonalBook = await widget.bookController.findAll();
+                      widget.listPersonalBook =
+                          await widget.bookController.findAll();
                       setState(() {});
                     });
                   },
@@ -162,7 +163,9 @@ class _EmptyHome extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.only(bottom: 40.0),
-        child: SvgPicture.asset("assets/images/grimorio_empty.svg"),
+        child: Lottie.asset(
+          'assets/images/lottie/book_lottie.json',
+        ),
       ),
       Padding(
         padding: const EdgeInsets.only(bottom: 8.0),

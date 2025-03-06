@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:mvc_project/theme.dart';
 
@@ -39,7 +39,8 @@ class PrimaryButton extends StatelessWidget {
 }
 
 class PrimaryButtonIcon extends StatelessWidget {
-  const PrimaryButtonIcon({super.key, required this.text, required this.icon, required this.onTap});
+  const PrimaryButtonIcon(
+      {super.key, required this.text, required this.icon, required this.onTap});
   final String text;
   final IconData icon;
   final VoidCallback? onTap;
@@ -62,7 +63,10 @@ class PrimaryButtonIcon extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(icon, color: PrimaryButtonProperties.iconColor,),
+              child: Icon(
+                icon,
+                color: PrimaryButtonProperties.iconColor,
+              ),
             ),
             Text(
               text,
@@ -76,5 +80,5 @@ class PrimaryButtonIcon extends StatelessWidget {
         ),
       ),
     );
-  } 
+  }
 }
