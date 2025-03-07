@@ -11,7 +11,7 @@ class CategoriesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        appBar: const CustomAppBar(
+        appBar: CustomAppBar(
           text: 'Select a category',
           isCenter: true,
         ),

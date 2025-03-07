@@ -19,43 +19,46 @@ class CategoryComponent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Expanded(
-          child: InkWell(
-            onTap: () {
-              context.read<HomeCubit>().changeSelectedCategory(
-                    category: category,
-                  );
-
-              Navigator.of(context).pushNamed(
-                RoutesEnum.entries.route,
-                arguments: category,
-              );
-            },
-            child: Ink(
-              child: Container(
-                width: 160,
-                height: 155,
-                decoration: BoxDecoration(
-                  color: ThemeColors.iconBackground,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: ThemeColors.iconColor,
-                    width: 3,
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromARGB(29, 3, 101, 140),
-                      offset: Offset(-5, -5),
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                    ),
-                    BoxShadow(
-                      color: Color.fromARGB(29, 3, 101, 140),
-                      offset: Offset(5, 5),
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                    )
-                  ],
+          child: Container(
+            width: 160,
+            height: 155,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: ThemeColors.iconColor,
+                width: 3,
+              ),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromARGB(29, 3, 101, 140),
+                  offset: Offset(-5, -5),
+                  spreadRadius: 5,
+                  blurRadius: 5,
                 ),
+                BoxShadow(
+                  color: Color.fromARGB(29, 3, 101, 140),
+                  offset: Offset(5, 5),
+                  spreadRadius: 5,
+                  blurRadius: 5,
+                )
+              ],
+            ),
+            child: Ink(
+              child: InkWell(
+                borderRadius: BorderRadius.circular(15),
+                
+                onTap: () {
+                  context.read<HomeCubit>().changeSelectedCategory(
+                        category: category,
+                      );
+
+                  Navigator.of(context).pushNamed(
+                    RoutesEnum.entries.route,
+                    arguments: {
+                      'isFavorite': false,
+                    },
+                  );
+                },
                 child: Center(
                   child: Image.asset(
                     '${CategoriesConsts.imagePath}${category.name}.png',

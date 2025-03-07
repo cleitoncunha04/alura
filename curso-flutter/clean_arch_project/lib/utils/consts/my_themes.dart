@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:animations/animations.dart';
 
 class MyThemes {
   MyThemes._();
@@ -7,7 +8,24 @@ class MyThemes {
     colorSchemeSeed: ThemeColors.primaryColor,
     brightness: Brightness.dark,
     useMaterial3: true,
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+          transitionType: SharedAxisTransitionType.horizontal,
+        ),
+        TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+          transitionType: SharedAxisTransitionType.horizontal,
+        ),
+      },
+    ),
     textTheme: const TextTheme(
+      labelSmall: TextStyle(
+        fontFamily: 'Philosopher',
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
+        fontSize: 16,
+        overflow: TextOverflow.clip,
+      ),
       bodyLarge: TextStyle(
         fontFamily: 'Philosopher',
         fontWeight: FontWeight.bold,
@@ -49,4 +67,5 @@ class ThemeColors {
   static const Color wrapColor = Color(0xFF3B4858);
   static const Color wrapBorderColor = Color(0xFF938F99);
   static const Color detailsBackground = Color(0xFF404040);
+  static const Color cardColor = Color(0xFF202429);
 }

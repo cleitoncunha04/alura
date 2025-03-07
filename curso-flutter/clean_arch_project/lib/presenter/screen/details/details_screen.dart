@@ -28,9 +28,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppBar(
+        appBar: CustomAppBar(
           text: 'Details',
           isCenter: false,
+          isDetails: true,
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
@@ -42,7 +43,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               List<EntryModel> entries =
                   context.read<HomeCubit>().state.savedEntries;
 
-              if (entries.where(
+              if (entries
+                      .where(
                         (e) => e.id == entryModel.id,
                       )
                       .toList()
@@ -138,20 +140,23 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         borderRadius: BorderRadius.circular(20),
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          child: Image.network(
-                            entryModel.image,
-                            fit: BoxFit.cover,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              return loadingProgress == null
-                                  ? child
-                                  : const SizedBox(
-                                      width: 280,
-                                      height: 280,
-                                      child: Center(
-                                        child: CircularProgressIndicator(),
-                                      ),
-                                    );
-                            },
+                          child: Hero(
+                            tag: entryModel.name,
+                            child: Image.network(
+                              entryModel.image,
+                              fit: BoxFit.cover,
+                              loadingBuilder: (context, child, loadingProgress) {
+                                return loadingProgress == null
+                                    ? child
+                                    : const SizedBox(
+                                        width: 280,
+                                        height: 280,
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                              },
+                            ),
                           ),
                         ),
                       ),
