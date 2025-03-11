@@ -28,7 +28,10 @@ class CategoriesScreen extends StatelessWidget {
             children: CategoriesEnum.values
                 .where((c) => c != CategoriesEnum.none)
                 .map(
-                  (c) => CategoryComponent(category: c),
+                  (c) => CategoryComponent(
+                    category: c,
+                    isHighlight: c == CategoriesEnum.monsters,
+                  ),
                 )
                 .toList(),
           ),
