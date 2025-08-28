@@ -1,0 +1,31 @@
+.text-field {
+  padding: 0.3rem;
+  background-color: white;
+  border-radius: 10px;
+  border: 3px solid #242424;
+  box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.199);
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.text-field__input {
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 10px;
+  color: #242424;
+}
+
+.text-field__input:focus {
+  outline: none;
+}
+
+.text-field__input::placeholder {
+  color: #242424;
+  font-size: 1rem;
+}
