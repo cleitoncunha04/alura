@@ -1,0 +1,22 @@
+.empty-state {
+    margin-top: -48px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.empty-state__text {
+    font-size: 1rem;
+    color: #EAEAEA;
+    text-align: center;
+    margin: 0;
+    line-height: 150%;
+}
+
+.empty-state__icon {
+    width: 64px;
+    height: 64px;
+    color: var(--color-primary);
+    margin-bottom: 40px;
+}

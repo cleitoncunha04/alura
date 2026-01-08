@@ -1,0 +1,10 @@
+.subheading {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    color: #877EED;
+    border-bottom: 2px dotted #877EED;
+    padding-bottom: 8px;
+    margin: 0;
+    margin-bottom: 24px;
+}
