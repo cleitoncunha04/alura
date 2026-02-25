@@ -1,0 +1,47 @@
+.s_regular {
+    font-size: 0.813rem;
+    font-weight: normal;
+    line-height: 120%;
+}
+
+.m_regular {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 120%;
+}
+
+.m_medium {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.m_bold {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.l_regular {
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 125%;
+}
+
+.l_bold {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.xxl_bold {
+    font-size: 1.938rem;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.xxxl_bold {
+    font-size: 2.438rem;
+    font-weight: 700;
+    line-height: 125%;
+}

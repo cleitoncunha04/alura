@@ -1,0 +1,22 @@
+.wrapper {
+    min-width: 100%;
+    min-height: 2.5rem;
+    background-color: var(--neutral-darker);
+    border-radius: .5rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.filled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-height: 100%;
+    background-color: var(--primary-highlight);
+    /* border-radius: .5rem 0  0 .5rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neutral-darker);
+    transition: width 0.5s ease-in-out;
+}

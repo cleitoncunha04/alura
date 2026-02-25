@@ -1,0 +1,29 @@
+.container {
+    max-height: 3.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--neutral-surface);
+    padding: 1rem .75rem;
+    border-radius: .5rem;
+}
+
+.container:focus-within {
+    box-shadow: 0 0 0 2px var(--primary-highlight);
+}
+
+.input {
+    flex: 1;
+    background-color: transparent;
+    border: none;
+    color: var(--neutral-text);
+}
+
+.input::placeholder {
+    color: var(--neutral-text);
+}
+
+.input:focus {
+    outline: none;
+}

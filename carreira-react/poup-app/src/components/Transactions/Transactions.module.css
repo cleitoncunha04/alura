@@ -1,0 +1,13 @@
+.list {
+    list-style-type: none;
+    min-width: 100%;
+    margin-bottom: 3rem;
+}
+
+.list li {
+    border-bottom: 1px solid var(--neutral-header);
+}
+
+.list li:last-child {
+    border-bottom: none;
+}

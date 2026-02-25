@@ -1,0 +1,21 @@
+.aside {
+    background-color: var(--neutral-header);
+    min-height: 100vh;
+    max-width: 17.625rem;
+    padding: 5rem 0;
+    display: flex;
+    flex-flow: column;
+    gap: 3.5rem;
+}
+
+.aside > img {
+    width: 100%;
+    height: auto;
+    padding: 0 2.5rem;
+}
+
+.footer {
+    text-align: center;
+    color: var(--neutral-text); 
+    padding: 0 1.5rem;
+}

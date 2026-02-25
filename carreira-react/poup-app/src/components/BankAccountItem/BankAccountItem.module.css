@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: var(--neutral-text);
+}
+
+
+.title {
+    display: flex;
+    min-width: 75%;
+    align-items: center;
+    gap: .5rem;
+}
+
+.value {
+    display: flex;
+    flex-flow: column;
+    gap: .5rem;
+
+}

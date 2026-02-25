@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    padding: 1rem 0;
+}
+
+.content {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+}
+
+.income {
+    color: var(--secondary-income);    
+}
+
+.expense {
+    color: var(--secondary-expense);
+}
+
+.aside {
+    color: var(--neutral-text);
+}
